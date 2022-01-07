@@ -165,7 +165,11 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                     width:
                                         MediaQuery.of(context).size.width / 1.1,
                                     height: 250,
-                                    decoration: BoxDecoration(),
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            opacity: 0.5,
+                                            image: AssetImage(
+                                                'Assets/images/signupcard.jpg'))),
                                   ),
                                 ),
                               ),

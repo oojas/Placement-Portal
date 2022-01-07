@@ -139,8 +139,8 @@ class _ProfileState extends State<Profile> {
               height: 400,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      opacity: 0.3,
-                      image: AssetImage('Assets/images/decoration.jpg'))),
+                      opacity: 0.5,
+                      image: AssetImage('Assets/images/sign-up_deco.jpg'))),
             ),
           ),
         ),
