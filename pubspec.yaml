@@ -38,6 +38,7 @@ dependencies:
   google_fonts:
   firebase_auth:
   google_sign_in:
+  package_info_plus:
 
 dev_dependencies:
   flutter_test:

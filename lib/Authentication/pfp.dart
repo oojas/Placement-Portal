@@ -1,4 +1,4 @@
-// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors
+// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors,prefer_const_literals_to_create_immutables
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/helper/general.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
 import 'package:provider/provider.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -18,12 +19,38 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   // ignore: override_on_non_overriding_member, unnecessary_new
   General general = new General();
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+    buildSignature: 'Unknown',
+  );
+  @override
+  void initState() {
+    super.initState();
+    _initPackageInfo();
+  }
+
+  Future<void> _initPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
     final photo = user?.photoURL;
     final name = user?.displayName;
     final email = user?.email;
+    final height = MediaQuery.of(context).size.height;
+
+    // ignore: prefer_const_declarations
+    final year = 3;
+    // ignore: unused_local_variable
+
     return Scaffold(
         body: SafeArea(
             child: Stack(children: [
@@ -57,8 +84,8 @@ class _ProfileState extends State<Profile> {
                     style:
                         GoogleFonts.roboto(fontSize: 15, color: Colors.white),
                   ),
-                  const SizedBox(
-                    height: 50,
+                  SizedBox(
+                    height: height / 8,
                   ),
                 ],
               ),
@@ -132,11 +159,64 @@ class _ProfileState extends State<Profile> {
                         )
                       ],
                     ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ListTile(
+                            title: Text('Year :',
+                                style: GoogleFonts.roboto(
+                                    fontSize: 25,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
+                            trailing: Text('3rd',
+                                style: GoogleFonts.roboto(
+                                    fontSize: 25,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                          ListTile(
+                            title: Text('Year :',
+                                style: GoogleFonts.roboto(
+                                    fontSize: 25,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
+                            trailing: Text('3rd',
+                                style: GoogleFonts.roboto(
+                                    fontSize: 25,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                          ListTile(
+                            title: Text('Year :',
+                                style: GoogleFonts.roboto(
+                                    fontSize: 25,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
+                            trailing: Text('3rd',
+                                style: GoogleFonts.roboto(
+                                    fontSize: 25,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(child: Container()),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: Text('Version Number :' + _packageInfo.version),
                   )
                 ],
               ),
               width: MediaQuery.of(context).size.width / 1.5,
-              height: 400,
+              height: height / 2,
               decoration: BoxDecoration(
                   image: DecorationImage(
                       opacity: 0.5,
@@ -162,7 +242,6 @@ class _ProfileState extends State<Profile> {
               child: Container(
                 width: 100,
                 height: 50,
-                // ignore: prefer_const_constructors
                 child: Center(
                     child: Text(
                   'Logout',

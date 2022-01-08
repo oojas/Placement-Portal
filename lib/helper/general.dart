@@ -12,5 +12,5 @@ class General {
     Colors.blue.shade300.withAlpha(30).withGreen(50).withOpacity(0.6),
     Colors.pink.shade200.withGreen(30).withRed(10).withOpacity(0.7),
     Colors.indigo.shade300.withGreen(30).withOpacity(0.9)
-  ], begin: Alignment.bottomRight, end: Alignment.topRight);
+  ], begin: Alignment.topCenter, end: Alignment.bottomCenter);
 }

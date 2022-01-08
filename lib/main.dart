@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:placementcracker/Authentication/login.dart';
+import 'package:placementcracker/Authentication/pfp.dart';
 import 'package:placementcracker/Screens/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
