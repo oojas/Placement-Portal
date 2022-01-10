@@ -1,8 +1,7 @@
-// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors,prefer_const_literals_to_create_immutables
+// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors,prefer_const_literals_to_create_immutables, deprecated_member_use
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/helper/general.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
@@ -226,9 +225,11 @@ class _ProfileState extends State<Profile> {
         ),
       ),
       Positioned(
-          bottom: 30,
-          left: 150,
-          // ignore: deprecated_member_use
+        bottom: 1,
+        right: 50,
+        left: 50,
+        child: Padding(
+          padding: const EdgeInsets.all(30.0),
           child: RaisedButton(
               elevation: 10,
               shape: RoundedRectangleBorder(
@@ -250,7 +251,9 @@ class _ProfileState extends State<Profile> {
                       color: Colors.black87,
                       fontWeight: FontWeight.bold),
                 )),
-              )))
+              )),
+        ),
+      )
     ])));
   }
 }

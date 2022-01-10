@@ -39,6 +39,8 @@ dependencies:
   firebase_auth:
   google_sign_in:
   package_info_plus:
+  sqflite:
+  path_provider:
 
 dev_dependencies:
   flutter_test:

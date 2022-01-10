@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors, camel_case_types
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:placementcracker/Authentication/login.dart';
-import 'package:placementcracker/Authentication/pfp.dart';
-import 'package:placementcracker/Screens/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:placementcracker/Widgets/UserInfo.dart';
+import 'package:placementcracker/Widgets/splash.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +24,7 @@ class myApp extends StatelessWidget {
       create: (context) => GoogleSignInProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: splashScreen(),
+        home: userInfo(),
       ),
     );
   }

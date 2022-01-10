@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/Authentication/pfp.dart';
+import 'package:placementcracker/Widgets/UserInfo.dart';
 import 'package:placementcracker/helper/general.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +52,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                 child: Text('Something went wrong'),
               );
             } else if (snapshot.hasData) {
-              return Profile();
+              return userInfo();
             } else
               // ignore: curly_braces_in_flow_control_structures
               return Scaffold(
@@ -168,7 +169,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                               3,
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
-                                              opacity: 0.5,
+                                              opacity: 0.2,
                                               scale: 7,
                                               image: AssetImage(
                                                   'Assets/images/no-stress.png'))),
