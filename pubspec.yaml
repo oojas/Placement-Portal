@@ -40,7 +40,7 @@ dependencies:
   google_sign_in:
   package_info_plus:
   sqflite:
-  path_provider:
+  path:
 
 dev_dependencies:
   flutter_test:

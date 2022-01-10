@@ -1,6 +1,7 @@
 // ignore_for_file: sized_box_for_whitespace, prefer_const_constructors,prefer_const_literals_to_create_immutables, deprecated_member_use,prefer_final_fields
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:placementcracker/Authentication/pfp.dart';
 import 'package:placementcracker/helper/general.dart';
 
 // ignore: camel_case_types
@@ -215,7 +216,12 @@ class _userInfoState extends State<userInfo>
                               )),
                             ),
                             minWidth: 120,
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return Profile();
+                              }));
+                            },
                           ),
                         ),
                       )
