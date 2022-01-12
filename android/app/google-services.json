@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:380304018600:android:bdfd104251292b91f0869d",
+        "mobilesdk_app_id": "1:380304018600:android:69b7ee55edc424cbf0869d",
         "android_client_info": {
-          "package_name": "com.example.placementcracker"
+          "package_name": "com.preparation.crackplacement"
         }
       },
       "oauth_client": [
