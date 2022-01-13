@@ -41,6 +41,7 @@ dependencies:
   package_info_plus:
   sqflite:
   path:
+  url_launcher:
   
 
 dev_dependencies:
