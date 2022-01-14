@@ -48,9 +48,7 @@ class FeedbackApp extends StatelessWidget {
                         child: Text(
                           "You know what's perfect other than Rajma Chawal?",
                           style: GoogleFonts.roboto(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                              fontSize: 18, color: Colors.black),
                         ),
                       ),
                     ),
@@ -84,9 +82,7 @@ class FeedbackApp extends StatelessWidget {
                         child: Text(
                           "You telling us your honest suggestions so that we can be more of use to you.",
                           style: GoogleFonts.roboto(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                              fontSize: 18, color: Colors.black),
                         ),
                       ),
                     ),
@@ -112,14 +108,14 @@ class FeedbackApp extends StatelessWidget {
                   child: Center(
                     child: Text(
                       'Submit Feedback',
-                      style: GoogleFonts.roboto(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
+                      style: GoogleFonts.hind(
+                        fontSize: 18,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
-                  width: 150,
-                  height: 55,
+                  width: 160,
+                  height: 60,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     gradient: LinearGradient(colors: [

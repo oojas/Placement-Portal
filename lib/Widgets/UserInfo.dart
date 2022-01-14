@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/Authentication/pfp.dart';
 import 'package:placementcracker/helper/general.dart';
-import 'package:placementcracker/modals/UserInfo.dart';
 
 // ignore: camel_case_types
 class userInfo extends StatefulWidget {
@@ -23,7 +22,7 @@ class _userInfoState extends State<userInfo>
   TextEditingController _language = TextEditingController();
   late AnimationController _controller;
   late Animation _animation;
-  late List<Details> details;
+
   
   FocusNode _focusNode = FocusNode();
 

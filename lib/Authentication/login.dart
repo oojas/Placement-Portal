@@ -154,8 +154,10 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                                       listen: false);
                                                   provider.googleLogin();
                                                 },
-                                                child:
-                                                    Text('Sign in with Google'),
+                                                child: Text(
+                                                  'Sign in with Google',
+                                                  style: GoogleFonts.hind(),
+                                                ),
                                                 color: Colors.amber,
                                               ),
                                             ),

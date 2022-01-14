@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:placementcracker/Authentication/pfp.dart';
 import 'package:placementcracker/Widgets/UserInfo.dart';
 import 'package:placementcracker/Widgets/about.dart';
 import 'package:placementcracker/Widgets/feedback.dart';
@@ -26,9 +27,7 @@ class myApp extends StatelessWidget {
       create: (context) => GoogleSignInProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: About(
-          
-        ),
+        home: About(),
       ),
     );
   }

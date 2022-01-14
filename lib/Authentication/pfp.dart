@@ -228,8 +228,8 @@ class _ProfileState extends State<Profile> {
       ),
       Positioned(
         bottom: 1,
-        right: 50,
-        left: 50,
+        right: 100,
+        left: 100,
         child: Padding(
           padding: const EdgeInsets.all(30.0),
           child: RaisedButton(
@@ -249,10 +249,10 @@ class _ProfileState extends State<Profile> {
                 child: Center(
                     child: Text(
                   'Logout',
-                  style: GoogleFonts.roboto(
-                      fontSize: 18,
-                      color: Colors.black87,
-                      fontWeight: FontWeight.bold),
+                  style: GoogleFonts.hind(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
                 )),
               )),
         ),
