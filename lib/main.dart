@@ -25,7 +25,7 @@ class myApp extends StatelessWidget {
       create: (context) => GoogleSignInProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: FeedbackApp(),
+        home: splashScreen(),
       ),
     );
   }

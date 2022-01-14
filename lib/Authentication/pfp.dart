@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/Authentication/login.dart';
 import 'package:placementcracker/helper/general.dart';
@@ -240,10 +241,7 @@ class _ProfileState extends State<Profile> {
                 final provider =
                     Provider.of<GoogleSignInProvider>(context, listen: false);
                 provider.logout();
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) {
-                  return Login();
-                }));
+                SystemNavigator.pop();
               },
               child: Container(
                 width: 100,
