@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:placementcracker/Authentication/login.dart';
 import 'package:placementcracker/helper/general.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
 import 'package:provider/provider.dart';
@@ -80,6 +79,9 @@ class _ProfileState extends State<Profile> {
                         color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
+                  SizedBox(
+                    height: 3,
+                  ),
                   Text(
                     'Email: ' + email!,
                     style:
@@ -91,11 +93,21 @@ class _ProfileState extends State<Profile> {
                 ],
               ),
               decoration: BoxDecoration(
-                  gradient: general.backgroundColor,
+                  gradient: LinearGradient(colors: [
+                    Colors.blue.shade300
+                        .withAlpha(30)
+                        .withGreen(50)
+                        .withOpacity(0.6),
+                    Colors.pink.shade200
+                        .withGreen(30)
+                        .withRed(10)
+                        .withOpacity(0.7),
+                    Colors.indigo.shade200.withGreen(30).withOpacity(0.9)
+                  ], begin: Alignment.topRight, end: Alignment.bottomCenter),
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(95),
                       bottomRight: Radius.circular(95))),
-            ),
+            )
           ],
         ),
       ),
@@ -241,7 +253,6 @@ class _ProfileState extends State<Profile> {
                 final provider =
                     Provider.of<GoogleSignInProvider>(context, listen: false);
                 provider.logout();
-                SystemNavigator.pop();
               },
               child: Container(
                 width: 100,

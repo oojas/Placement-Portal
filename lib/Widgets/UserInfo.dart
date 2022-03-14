@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/Authentication/pfp.dart';
 import 'package:placementcracker/helper/general.dart';
+import 'package:placementcracker/providers/FormData.dart';
 
 // ignore: camel_case_types
 class userInfo extends StatefulWidget {
@@ -23,9 +24,7 @@ class _userInfoState extends State<userInfo>
   late AnimationController _controller;
   late Animation _animation;
 
-  
   FocusNode _focusNode = FocusNode();
-
   @override
   void initState() {
     super.initState();
@@ -132,7 +131,6 @@ class _userInfoState extends State<userInfo>
                                                       borderSide: BorderSide(
                                                           color: Colors.black)),
                                                   focusColor: Colors.black,
-                                                  labelText: 'Community Name',
                                                   labelStyle:
                                                       GoogleFonts.roboto(
                                                           color: Colors.black),

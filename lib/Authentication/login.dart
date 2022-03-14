@@ -2,9 +2,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:placementcracker/Authentication/pfp.dart';
 import 'package:placementcracker/Widgets/UserInfo.dart';
 import 'package:placementcracker/helper/general.dart';
+import 'package:placementcracker/providers/FormData.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +18,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation1;
+  formData data = formData();
   @override
   void initState() {
     super.initState();
@@ -58,7 +59,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
               return Scaffold(
                 // ignore: sized_box_for_whitespace
                 body: SafeArea(
-                  child: Container(
+                  child: SizedBox(
                     height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width,
                     child: SingleChildScrollView(
@@ -87,8 +88,6 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                   decoration: BoxDecoration(
                                       color: Colors.amberAccent,
                                       borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(13),
-                                        topRight: Radius.circular(12),
                                         bottomLeft: Radius.circular(700),
                                       ),
                                       gradient: LinearGradient(
@@ -135,11 +134,6 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                               ),
                                             ),
                                           ),
-                                          Text('Trust the process!',
-                                              style: GoogleFonts.roboto(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold)),
-                                          Expanded(child: Container()),
                                           Align(
                                             alignment: Alignment.bottomCenter,
                                             child: Padding(

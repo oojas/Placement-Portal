@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
@@ -23,5 +24,6 @@ class GoogleSignInProvider extends ChangeNotifier {
   Future logout() async {
     await googleSignIn.disconnect();
     FirebaseAuth.instance.signOut();
+    SystemNavigator.pop();
   }
 }
