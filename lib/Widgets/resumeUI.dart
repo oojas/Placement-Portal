@@ -1,5 +1,4 @@
-// ignore_for_file: camel_case_types,prefer_const_literals_to_create_immutables, prefer_const_constructors
-
+// ignore_for_file: camel_case_types,prefer_const_literals_to_create_immutables, prefer_const_constructors, file_names
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/helper/general.dart';
@@ -54,7 +53,7 @@ class _resumeState extends State<resume> {
                               child: Text(
                                 "How to make an outstanding resume that stands out.",
                                 style: GoogleFonts.roboto(
-                                    fontSize: 25,
+                                    fontSize: 24,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.left,
@@ -199,6 +198,7 @@ class _resumeState extends State<resume> {
               ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
+                physics: BouncingScrollPhysics(),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

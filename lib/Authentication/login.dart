@@ -67,6 +67,10 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                         children: [
                           Stack(
                             children: [
+                              Image.asset(
+                                'Assets/images/student.png',
+                                height: MediaQuery.of(context).size.height / 3,
+                              ),
                               FadeTransition(
                                 opacity: _animation1,
                                 child: Container(
@@ -76,9 +80,9 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                         const EdgeInsets.only(bottom: 200.0),
                                     child: Text(
                                       "Sign Up",
-                                      style: GoogleFonts.heebo(
-                                          fontSize: 30,
+                                      style: GoogleFonts.roboto(
                                           color: Colors.white,
+                                          fontSize: 30,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   )),
@@ -134,25 +138,52 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                               ),
                                             ),
                                           ),
+                                          Expanded(child: Container()),
                                           Align(
                                             alignment: Alignment.bottomCenter,
                                             child: Padding(
                                               padding: const EdgeInsets.only(
                                                   bottom: 8.0),
-                                              child: RaisedButton(
-                                                elevation: 3,
-                                                onPressed: () {
-                                                  final provider = Provider.of<
+                                              child: InkWell(
+                                                onTap: (){
+                                                    final provider = Provider.of<
                                                           GoogleSignInProvider>(
                                                       context,
                                                       listen: false);
                                                   provider.googleLogin();
                                                 },
-                                                child: Text(
-                                                  'Sign in with Google',
-                                                  style: GoogleFonts.hind(),
+                                                child: Card(
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15)),
+                                                  elevation: 3,
+                                                  child: Container(
+                                                    width: MediaQuery.of(context)
+                                                            .size
+                                                            .width /
+                                                        3,
+                                                    height: MediaQuery.of(context)
+                                                            .size
+                                                            .height /
+                                                        20,
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.amber,
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                15)),
+                                                    child: Center(
+                                                      child: Text(
+                                                          'Sign in with Google',
+                                                          style:
+                                                              GoogleFonts.roboto(
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold)),
+                                                    ),
+                                                  ),
                                                 ),
-                                                color: Colors.amber,
                                               ),
                                             ),
                                           )
@@ -165,7 +196,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                               3,
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
-                                              opacity: 0.2,
+                                              opacity: 0.6,
                                               scale: 7,
                                               image: AssetImage(
                                                   'Assets/images/no-stress.png'))),
