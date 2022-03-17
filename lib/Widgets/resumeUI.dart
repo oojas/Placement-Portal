@@ -243,7 +243,7 @@ class _resumeState extends State<resume> {
                     Card(
                       elevation: 5,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                       child: Stack(children: [
                         InkWell(
@@ -281,7 +281,7 @@ class _resumeState extends State<resume> {
                     Card(
                       elevation: 5,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                       child: Stack(children: [
                         InkWell(
@@ -318,6 +318,75 @@ class _resumeState extends State<resume> {
                     ),
                   ],
                 ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Card(
+                elevation: 3,
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(50),
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50))),
+                child: SizedBox(
+                  width: width,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                          "Free resume building websites",
+                          style: GoogleFonts.roboto(
+                              fontSize: 22,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    elevation: 3,
+                    child: Container(
+                      child: Image.asset(
+                        'Assets/images/resumelink.png',
+                        fit: BoxFit.contain,
+                      ),
+                      width: width / 5,
+                      height: height / 10,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50)),
+                    ),
+                  ),
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    elevation: 3,
+                    child: Container(
+                      width: width / 5,
+                      height: height / 10,
+                      child: Image.asset(
+                        'Assets/images/resumelink.png',
+                        fit: BoxFit.contain,
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50)),
+                    ),
+                  )
+                ],
               )
             ],
           ),
