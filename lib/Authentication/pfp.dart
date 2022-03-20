@@ -1,11 +1,14 @@
-// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors,prefer_const_literals_to_create_immutables, deprecated_member_use
+// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors,prefer_const_literals_to_create_immutables, deprecated_member_use, curly_braces_in_flow_control_structures
+
+import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/helper/general.dart';
+
 import 'package:placementcracker/providers/google_sign_in.dart';
+
 import 'package:provider/provider.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -138,7 +141,7 @@ class _ProfileState extends State<Profile> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(12)),
                               child: Image.asset(
-                                'Assets/images/resume.jpg',
+                                'Assets/images/resume.png',
                                 fit: BoxFit.cover,
                               )),
                         ),
@@ -180,44 +183,7 @@ class _ProfileState extends State<Profile> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ListTile(
-                            title: Text('Year :',
-                                style: GoogleFonts.roboto(
-                                    fontSize: 25,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold)),
-                            trailing: Text('3rd',
-                                style: GoogleFonts.roboto(
-                                    fontSize: 25,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold)),
-                          ),
-                          ListTile(
-                            title: Text('Year :',
-                                style: GoogleFonts.roboto(
-                                    fontSize: 25,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold)),
-                            trailing: Text('3rd',
-                                style: GoogleFonts.roboto(
-                                    fontSize: 25,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold)),
-                          ),
-                          ListTile(
-                            title: Text('Year :',
-                                style: GoogleFonts.roboto(
-                                    fontSize: 25,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold)),
-                            trailing: Text('3rd',
-                                style: GoogleFonts.roboto(
-                                    fontSize: 25,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold)),
-                          )
-                        ],
+                        children: [],
                       ),
                     ),
                   ),

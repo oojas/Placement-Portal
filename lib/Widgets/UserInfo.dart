@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/Authentication/pfp.dart';
 import 'package:placementcracker/helper/general.dart';
-import 'package:placementcracker/providers/FormData.dart';
 
 // ignore: camel_case_types
 class userInfo extends StatefulWidget {
@@ -20,10 +19,9 @@ class _userInfoState extends State<userInfo>
   // ignore:
   TextEditingController _collegeYear = TextEditingController();
   TextEditingController _collegeName = TextEditingController();
-  TextEditingController _language = TextEditingController();
+  TextEditingController _rollNumber = TextEditingController();
   late AnimationController _controller;
   late Animation _animation;
-
   FocusNode _focusNode = FocusNode();
   @override
   void initState() {
@@ -124,9 +122,10 @@ class _userInfoState extends State<userInfo>
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: TextFormField(
-                                              controller: _collegeYear,
+                                              controller: _collegeName,
                                               keyboardType: TextInputType.name,
                                               decoration: InputDecoration(
+                                                  labelText: 'College Name',
                                                   border: OutlineInputBorder(
                                                       borderSide: BorderSide(
                                                           color: Colors.black)),
@@ -150,7 +149,7 @@ class _userInfoState extends State<userInfo>
                                           padding: const EdgeInsets.all(8.0),
                                           child: TextFormField(
                                             focusNode: _focusNode,
-                                            controller: _collegeName,
+                                            controller: _collegeYear,
                                             keyboardType: TextInputType.number,
                                             decoration: InputDecoration(
                                                 border: OutlineInputBorder(
@@ -170,15 +169,14 @@ class _userInfoState extends State<userInfo>
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: TextFormField(
-                                            controller: _language,
+                                            controller: _rollNumber,
                                             keyboardType: TextInputType.text,
                                             decoration: InputDecoration(
                                                 border: OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                         color: Colors.black)),
                                                 focusColor: Colors.black,
-                                                labelText:
-                                                    'Known coding language',
+                                                labelText: 'Roll Number',
                                                 labelStyle: GoogleFonts.roboto(
                                                     color: Colors.black),
                                                 contentPadding:
@@ -215,18 +213,13 @@ class _userInfoState extends State<userInfo>
                               )),
                             ),
                             minWidth: 120,
-                            onPressed: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return Profile();
-                              }));
-                            },
+                            onPressed: () {},
                           ),
                         ),
-                      )
+                      ),
                     ]),
                   ),
-                )
+                ),
               ],
             ),
           ),
