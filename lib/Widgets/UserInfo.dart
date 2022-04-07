@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/Authentication/pfp.dart';
 import 'package:placementcracker/helper/general.dart';
+import 'package:placementcracker/providers/userinfo_provider.dart';
+import 'package:provider/provider.dart';
 
 // ignore: camel_case_types
 class userInfo extends StatefulWidget {
@@ -213,7 +215,23 @@ class _userInfoState extends State<userInfo>
                               )),
                             ),
                             minWidth: 120,
-                            onPressed: () {},
+                            onPressed: () {
+                              if (_collegeName.text.isEmpty &&
+                                  _collegeYear.text.isEmpty &&
+                                  _rollNumber.text.isEmpty) {
+                                return;
+                              } else {
+                                Provider.of<UserInformationProvider>(context,listen: false)
+                                    .addDetails(
+                                        _collegeName.text,
+                                        _rollNumber.text,
+                                        int.parse(_collegeYear.text));
+                                Navigator.of(context)
+                                    .push(MaterialPageRoute(builder: (context) {
+                                  return Profile();
+                                }));
+                              }
+                            },
                           ),
                         ),
                       ),

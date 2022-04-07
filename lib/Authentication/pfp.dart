@@ -1,4 +1,4 @@
-// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors,prefer_const_literals_to_create_immutables, deprecated_member_use, curly_braces_in_flow_control_structures
+// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors,prefer_const_literals_to_create_immutables, deprecated_member_use, curly_braces_in_flow_control_structures, non_constant_identifier_names, avoid_types_as_parameter_names
 
 import 'dart:developer';
 
@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/helper/general.dart';
 
 import 'package:placementcracker/providers/google_sign_in.dart';
+import 'package:placementcracker/providers/userinfo_provider.dart';
 
 import 'package:provider/provider.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -125,6 +126,7 @@ class _ProfileState extends State<Profile> {
             elevation: 15,
             child: Container(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -176,18 +178,100 @@ class _ProfileState extends State<Profile> {
                       ],
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
+                  Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [],
-                      ),
+                      child: Consumer<UserInformationProvider>(
+                          builder: (context, UserInformationProvider, _) {
+                        return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: UserInformationProvider.list.length,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                children: [
+                                  Text(
+                                    'College Name :',
+                                    style: GoogleFonts.roboto(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 15.0),
+                                    child: SizedBox(
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          UserInformationProvider
+                                              .list[index].collegeName
+                                              .toString(),
+                                          style: GoogleFonts.roboto(
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      'Roll Number :',
+                                      style: GoogleFonts.roboto(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 15.0),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        UserInformationProvider
+                                            .list[index].rollNumber
+                                            .toString(),
+                                        style: GoogleFonts.roboto(
+                                            fontSize: 18, color: Colors.black),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 7.0, left: 15, right: 15),
+                                    child: Text(
+                                      'College Year :',
+                                      style: GoogleFonts.roboto(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    UserInformationProvider
+                                        .list[index].collegeYear
+                                        .toString(),
+                                    style: GoogleFonts.roboto(
+                                        fontSize: 18, color: Colors.black),
+                                  ),
+                                ],
+                              );
+                            });
+                      }),
                     ),
                   ),
-                  Expanded(child: Container()),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: Text('Version Number :' + _packageInfo.version),
@@ -195,10 +279,10 @@ class _ProfileState extends State<Profile> {
                 ],
               ),
               width: MediaQuery.of(context).size.width / 1.5,
-              height: height / 2,
+              height: height / 1.9,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      opacity: 0.5,
+                      opacity: 0.2,
                       image: AssetImage('Assets/images/sign-up_deco.jpg'))),
             ),
           ),

@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/Authentication/pfp.dart';
 import 'package:placementcracker/Widgets/UserInfo.dart';
 import 'package:placementcracker/helper/general.dart';
-import 'package:placementcracker/providers/FormData.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +18,6 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation1;
-  formData data = formData();
   @override
   void initState() {
     super.initState();

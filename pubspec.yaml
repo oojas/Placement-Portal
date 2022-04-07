@@ -42,6 +42,7 @@ dependencies:
   path:
   url_launcher:
   font_awesome_flutter:
+  http:
   
 
 dev_dependencies:
