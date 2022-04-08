@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_new
 
 import 'package:flutter/cupertino.dart';
-import 'package:placementcracker/model/userinfo.dart';
+import 'package:placementcracker/modals/userinfo.dart';
 
 class UserInformationProvider extends ChangeNotifier {
   List<UserInformation> list = [];
