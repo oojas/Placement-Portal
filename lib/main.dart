@@ -7,6 +7,7 @@ import 'package:placementcracker/Authentication/pfp.dart';
 import 'package:placementcracker/Widgets/UserInfo.dart';
 import 'package:placementcracker/Widgets/about.dart';
 import 'package:placementcracker/Widgets/feedback.dart';
+import 'package:placementcracker/Widgets/main_screen.dart';
 import 'package:placementcracker/Widgets/resumeUI.dart';
 import 'package:placementcracker/Widgets/splash.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
@@ -32,7 +33,7 @@ class myApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Login(),
+        home: MainScreen(),
       ),
     );
   }
