@@ -43,7 +43,8 @@ dependencies:
   url_launcher:
   font_awesome_flutter:
   http:
-  
+  flutter_zoom_drawer:
+  percent_indicator: 
   
 
 dev_dependencies:

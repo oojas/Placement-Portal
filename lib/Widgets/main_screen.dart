@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:placementcracker/Widgets/drawer.dart';
+import 'package:placementcracker/Widgets/Drawer/drawer.dart';
 import 'package:placementcracker/helper/general.dart';
 
 class MainScreen extends StatefulWidget {
@@ -33,8 +34,13 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(
               icon: Icon(Icons.book_outlined), label: 'Profile'),
         ]),
-        drawer: drawer(),
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {
+              ZoomDrawer.of(context)!.toggle();
+            },
+          ),
           title: Text(
             'Placement Cracker',
             style: GoogleFonts.roboto(),
