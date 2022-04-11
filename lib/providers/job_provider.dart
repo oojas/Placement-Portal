@@ -10,11 +10,7 @@ class JobProvider extends ChangeNotifier {
 
   setShouldRefresh(bool value) => _shouldRefresh = value;
 
-  int get currentPage => _currentPage;
 
-  setCurrentPage(int page) {
-    _currentPage = page;
-  }
 
   bool get isJobPageProcessing => _isJobPageProcessing;
 

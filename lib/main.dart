@@ -11,6 +11,7 @@ import 'package:placementcracker/Widgets/about.dart';
 import 'package:placementcracker/Widgets/feedback.dart';
 import 'package:placementcracker/Widgets/resumeUI.dart';
 import 'package:placementcracker/Widgets/splash.dart';
+import 'package:placementcracker/providers/article_provider.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
 import 'package:placementcracker/providers/job_provider.dart';
 import 'package:placementcracker/providers/userinfo_provider.dart';
@@ -38,10 +39,11 @@ class _myAppState extends State<myApp> {
         ChangeNotifierProvider(create: (context) => GoogleSignInProvider()),
         ChangeNotifierProvider(create: (context) => UserInformationProvider()),
         ChangeNotifierProvider(create: (context)=>JobProvider()),
+        ChangeNotifierProvider(create: (context)=>ArticleProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: drawer(),
+        home: splashScreen(),
       ),
     );
   }

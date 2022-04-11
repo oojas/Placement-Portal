@@ -43,9 +43,9 @@ dependencies:
   url_launcher:
   font_awesome_flutter:
   http:
-  flutter_zoom_drawer:
   percent_indicator: 
-  
+  shared_preferences:
+  after_layout: 
 
 dev_dependencies:
   flutter_test:

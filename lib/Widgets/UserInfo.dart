@@ -1,11 +1,16 @@
-// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors,prefer_const_literals_to_create_immutables, deprecated_member_use,prefer_final_fields
+// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors,prefer_const_literals_to_create_immutables, deprecated_member_use,prefer_final_fields, unused_field,
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/Authentication/pfp.dart';
+
+import 'package:placementcracker/Widgets/Drawer/drawer.dart';
+import 'package:placementcracker/Widgets/Feed/feed_screen.dart';
 import 'package:placementcracker/helper/general.dart';
 import 'package:placementcracker/providers/userinfo_provider.dart';
 import 'package:provider/provider.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:after_layout/after_layout.dart';
 // ignore: camel_case_types
 class userInfo extends StatefulWidget {
   const userInfo({Key? key}) : super(key: key);
@@ -16,7 +21,7 @@ class userInfo extends StatefulWidget {
 
 // ignore: camel_case_types
 class _userInfoState extends State<userInfo>
-    with SingleTickerProviderStateMixin {
+    with  AfterLayoutMixin<userInfo>,SingleTickerProviderStateMixin{
   General general = General();
   // ignore:
   TextEditingController _collegeYear = TextEditingController();
@@ -25,12 +30,25 @@ class _userInfoState extends State<userInfo>
   late AnimationController _controller;
   late Animation _animation;
   FocusNode _focusNode = FocusNode();
+  Future checkFirstSeen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool _seen = (prefs.getBool('seen') ?? false);
+
+    if (_seen) {
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => new FeedScreen()));
+    } else {
+      await prefs.setBool('seen', true);
+    }
+  }
+  @override
+  void afterFirstLayout(BuildContext context) => checkFirstSeen();
   @override
   void initState() {
     super.initState();
 
     _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+        AnimationController( duration: Duration(milliseconds: 300), vsync: this );
     _animation = Tween(begin: 300.0, end: 50.0).animate(_controller)
       ..addListener(() {
         setState(() {});
@@ -44,7 +62,7 @@ class _userInfoState extends State<userInfo>
       }
     });
   }
-
+    
   @override
   void dispose() {
     _controller.dispose();
@@ -227,8 +245,8 @@ class _userInfoState extends State<userInfo>
                                         _rollNumber.text,
                                         int.parse(_collegeYear.text));
                                 Navigator.of(context)
-                                    .push(MaterialPageRoute(builder: (context) {
-                                  return Profile();
+                                    .pushReplacement(MaterialPageRoute(builder: (context) {
+                                  return FeedScreen();
                                 }));
                               }
                             },
