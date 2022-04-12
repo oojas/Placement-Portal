@@ -1,7 +1,4 @@
 // ignore_for_file: sized_box_for_whitespace, prefer_const_constructors,prefer_const_literals_to_create_immutables, deprecated_member_use, curly_braces_in_flow_control_structures, non_constant_identifier_names, avoid_types_as_parameter_names
-
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -52,7 +49,7 @@ class _ProfileState extends State<Profile> {
     final height = MediaQuery.of(context).size.height;
 
     // ignore: prefer_const_declarations
-    final year = 3;
+
     // ignore: unused_local_variable
 
     return Scaffold(
@@ -76,12 +73,18 @@ class _ProfileState extends State<Profile> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    'Name: ' + name!,
-                    style: GoogleFonts.roboto(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Name: ' + name!,
+                        style: GoogleFonts.roboto(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 3,

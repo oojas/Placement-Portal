@@ -144,8 +144,8 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                               padding: const EdgeInsets.only(
                                                   bottom: 8.0),
                                               child: InkWell(
-                                                onTap: (){
-                                                    final provider = Provider.of<
+                                                onTap: () {
+                                                  final provider = Provider.of<
                                                           GoogleSignInProvider>(
                                                       context,
                                                       listen: false);
@@ -156,26 +156,34 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15)),
-                                                  elevation: 3,
+                                                  elevation: 10,
                                                   child: Container(
-                                                    width: MediaQuery.of(context)
-                                                            .size
-                                                            .width /
-                                                        3,
-                                                    height: MediaQuery.of(context)
-                                                            .size
-                                                            .height /
-                                                        20,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            2.5,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height /
+                                                            20,
                                                     decoration: BoxDecoration(
-                                                        color: Colors.amber,
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                15)),
+                                                            BorderRadius
+                                                                .circular(15),
+                                                        border: Border.all(
+                                                            color:
+                                                                Colors.indigo),
+                                                        gradient: general
+                                                            .buttonColor),
                                                     child: Center(
                                                       child: Text(
                                                           'Sign in with Google',
-                                                          style:
-                                                              GoogleFonts.roboto(
+                                                          style: GoogleFonts
+                                                              .roboto(
+                                                                  color: Colors
+                                                                      .white,
                                                                   fontSize: 14,
                                                                   fontWeight:
                                                                       FontWeight

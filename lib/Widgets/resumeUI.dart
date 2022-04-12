@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/helper/general.dart';
 import 'package:placementcracker/url/UrlLinks.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class resume extends StatefulWidget {
   const resume({Key? key}) : super(key: key);
@@ -16,6 +17,15 @@ class _resumeState extends State<resume> {
   General general = new General();
   // ignore: unnecessary_new
   URL url = new URL();
+
+  launchURLForResume(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -354,36 +364,46 @@ class _resumeState extends State<resume> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    elevation: 3,
-                    child: Container(
-                      child: Image.asset(
-                        'Assets/images/resumelink.png',
-                        fit: BoxFit.contain,
+                  InkWell(
+                    onTap: () {
+                      launchURLForResume("https://app.flowcv.io/");
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
                       ),
-                      width: width / 5,
-                      height: height / 10,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50)),
+                      elevation: 3,
+                      child: Container(
+                        child: Image.asset(
+                          'Assets/images/resumelink.png',
+                          fit: BoxFit.contain,
+                        ),
+                        width: width / 5,
+                        height: height / 10,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50)),
+                      ),
                     ),
                   ),
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    elevation: 3,
-                    child: Container(
-                      width: width / 5,
-                      height: height / 10,
-                      child: Image.asset(
-                        'Assets/images/resumelink.png',
-                        fit: BoxFit.contain,
+                  InkWell(
+                    onTap: () {
+                      launchURLForResume("https://www.overleaf.com/latex/templates/deedy-cv/bjryvfsjdyxz");
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
                       ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50)),
+                      elevation: 3,
+                      child: Container(
+                        width: width / 5,
+                        height: height / 10,
+                        child: Image.asset(
+                          'Assets/images/resumelink.png',
+                          fit: BoxFit.contain,
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50)),
+                      ),
                     ),
                   )
                 ],

@@ -108,22 +108,16 @@ class FeedbackApp extends StatelessWidget {
                       'Submit Feedback',
                       style: GoogleFonts.roboto(
                         fontSize: 18,
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                     ),
                   ),
                   width: 160,
                   height: 50,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    gradient: LinearGradient(colors: [
-                      Colors.pink.shade100
-                          .withAlpha(30)
-                          .withRed(50)
-                          .withOpacity(0.7),
-                      Colors.indigo.shade100.withGreen(30).withOpacity(0.5)
-                    ], begin: Alignment.centerLeft, end: Alignment.centerRight),
-                  ),
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: general.buttonColor),
                 ),
               ),
             )

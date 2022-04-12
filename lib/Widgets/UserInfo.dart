@@ -11,6 +11,7 @@ import 'package:placementcracker/providers/userinfo_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:after_layout/after_layout.dart';
+
 // ignore: camel_case_types
 class userInfo extends StatefulWidget {
   const userInfo({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class userInfo extends StatefulWidget {
 
 // ignore: camel_case_types
 class _userInfoState extends State<userInfo>
-    with  AfterLayoutMixin<userInfo>,SingleTickerProviderStateMixin{
+    with AfterLayoutMixin<userInfo>, SingleTickerProviderStateMixin {
   General general = General();
   // ignore:
   TextEditingController _collegeYear = TextEditingController();
@@ -41,6 +42,7 @@ class _userInfoState extends State<userInfo>
       await prefs.setBool('seen', true);
     }
   }
+
   @override
   void afterFirstLayout(BuildContext context) => checkFirstSeen();
   @override
@@ -48,7 +50,7 @@ class _userInfoState extends State<userInfo>
     super.initState();
 
     _controller =
-        AnimationController( duration: Duration(milliseconds: 300), vsync: this );
+        AnimationController(duration: Duration(milliseconds: 300), vsync: this);
     _animation = Tween(begin: 300.0, end: 50.0).animate(_controller)
       ..addListener(() {
         setState(() {});
@@ -62,7 +64,7 @@ class _userInfoState extends State<userInfo>
       }
     });
   }
-    
+
   @override
   void dispose() {
     _controller.dispose();
@@ -224,12 +226,16 @@ class _userInfoState extends State<userInfo>
                               width: 120,
                               height: 45,
                               decoration: BoxDecoration(
-                                  color: Colors.amber,
-                                  borderRadius: BorderRadius.circular(15)),
+                                  borderRadius: BorderRadius.circular(15),
+                                  border: Border.all(color: Colors.indigo),
+                                  gradient: general.buttonColor),
                               child: Center(
                                   child: Text(
                                 'Submit',
-                                style: GoogleFonts.roboto(fontSize: 20),
+                                style: GoogleFonts.roboto(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
                               )),
                             ),
                             minWidth: 120,
@@ -239,13 +245,14 @@ class _userInfoState extends State<userInfo>
                                   _rollNumber.text.isEmpty) {
                                 return;
                               } else {
-                                Provider.of<UserInformationProvider>(context,listen: false)
+                                Provider.of<UserInformationProvider>(context,
+                                        listen: false)
                                     .addDetails(
                                         _collegeName.text,
                                         _rollNumber.text,
                                         int.parse(_collegeYear.text));
-                                Navigator.of(context)
-                                    .pushReplacement(MaterialPageRoute(builder: (context) {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(builder: (context) {
                                   return FeedScreen();
                                 }));
                               }

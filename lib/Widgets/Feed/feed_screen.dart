@@ -278,6 +278,7 @@ class _FeedScreenState extends State<FeedScreen> {
                     Column(
                       children: [
                         SizedBox(
+                            width: width / 2,
                             child: Text(
                                 'Everyday 10% of all the\njobs in the world are created')),
                         SizedBox(
