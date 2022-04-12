@@ -1,24 +1,22 @@
-// ignore_for_file: unused_local_variable
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart';
-import 'package:placementcracker/modals/articles.dart';
+import 'package:placementcracker/modals/Programs.dart';
 import 'package:placementcracker/modals/httpresponse.dart';
 
-class ArticleAPI {
-  static Future<HTTPResponse<List<Articles>>> getArticles() async {
-    String url = 'http://placement-crack.herokuapp.com/articles';
+class ProgramAPI {
+  static Future<HTTPResponse<List<Program>>> getPrograms() async {
+    String url = 'http://placement-crack.herokuapp.com/programs';
     try {
       var response = await get(Uri.parse(url));
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
-        List<Articles> articleList = [];
+        List<Program> programList = [];
         body.forEach((e) {
-          Articles article = Articles.fromJson(e);
-          articleList.add(article);
+          Program program = Program.fromJson(e);
+          programList.add(program);
         });
-        return HTTPResponse(true, articleList, responseCode: response.statusCode);
+        return HTTPResponse(true, programList, responseCode: response.statusCode);
       } else {
         return HTTPResponse(false, null,
             message: 'Invalid response', responseCode: response.statusCode);

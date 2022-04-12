@@ -3,11 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:placementcracker/Authentication/login.dart';
+import 'package:placementcracker/Widgets/Feed/feed_screen.dart';
 import 'package:placementcracker/Widgets/UserInfo.dart';
+import 'package:placementcracker/Widgets/ambassadorProgram.dart';
 import 'package:placementcracker/Widgets/splash.dart';
 import 'package:placementcracker/providers/article_provider.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
 import 'package:placementcracker/providers/job_provider.dart';
+import 'package:placementcracker/providers/program_provider.dart';
 import 'package:placementcracker/providers/userinfo_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -32,12 +35,13 @@ class _myAppState extends State<myApp> {
       providers: [
         ChangeNotifierProvider(create: (context) => GoogleSignInProvider()),
         ChangeNotifierProvider(create: (context) => UserInformationProvider()),
-        ChangeNotifierProvider(create: (context)=>JobProvider()),
-        ChangeNotifierProvider(create: (context)=>ArticleProvider())
+        ChangeNotifierProvider(create: (context) => JobProvider()),
+        ChangeNotifierProvider(create: (context) => ArticleProvider()),
+        ChangeNotifierProvider(create: ((context) => ProgramProvider())),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Login(),
+        home: FeedScreen(),
       ),
     );
   }

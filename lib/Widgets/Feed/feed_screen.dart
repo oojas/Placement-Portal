@@ -165,77 +165,81 @@ class _FeedScreenState extends State<FeedScreen> {
                           style: GoogleFonts.roboto(fontSize: 25),
                         ),
                       )),
-                  SizedBox(
-                    height: height / 2,
-                    child: Consumer<ArticleProvider>(
-                      builder: (_, provider, __) => provider
-                              .isArticlePageProcessing
-                          ? Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : provider.articlesListLength > 0
-                              ? ListView.builder(
-                                  physics: BouncingScrollPhysics(),
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: provider.articlesListLength,
-                                  itemBuilder: ((context, index) {
-                                    Articles articles =
-                                        provider.getArticleByIndex(index);
-                                    return InkWell(
-                                      onTap: () {
-                                        launchURLForArticleLink(
-                                            articles.link.toString());
-                                      },
-                                      child: Card(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                        ),
-                                        elevation: 10,
-                                        child: SizedBox(
-                                          width: width,
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                width: width,
-                                                height: height / 3,
-                                                child: Image.memory(
-                                                    base64Decode(articles.image
-                                                        .toString()),
-                                                    fit: BoxFit.fill),
-                                              ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              SizedBox(
-                                                  width: width,
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            15.0),
-                                                    child: Text(
-                                                      articles.description
-                                                          .toString(),
-                                                      style: GoogleFonts.roboto(
-                                                          fontSize: 20),
-                                                    ),
-                                                  ))
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }))
-                              : Center(
-                                  child: Text('Nothing to show here!'),
-                                ),
-                    ),
-                  ),
+                  buildArticleList(height, width),
                 ],
               ),
             )),
       ),
     );
+  }
+
+  SizedBox buildArticleList(double height, double width) {
+    return SizedBox(
+                  height: height / 2,
+                  child: Consumer<ArticleProvider>(
+                    builder: (_, provider, __) => provider
+                            .isArticlePageProcessing
+                        ? Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : provider.articlesListLength > 0
+                            ? ListView.builder(
+                                physics: BouncingScrollPhysics(),
+                                scrollDirection: Axis.vertical,
+                                itemCount: provider.articlesListLength,
+                                itemBuilder: ((context, index) {
+                                  Articles articles =
+                                      provider.getArticleByIndex(index);
+                                  return InkWell(
+                                    onTap: () {
+                                      launchURLForArticleLink(
+                                          articles.link.toString());
+                                    },
+                                    child: Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15),
+                                      ),
+                                      elevation: 10,
+                                      child: SizedBox(
+                                        width: width,
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              width: width,
+                                              height: height / 3,
+                                              child: Image.memory(
+                                                  base64Decode(articles.image
+                                                      .toString()),
+                                                  fit: BoxFit.fill),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            SizedBox(
+                                                width: width,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(
+                                                          15.0),
+                                                  child: Text(
+                                                    articles.description
+                                                        .toString(),
+                                                    style: GoogleFonts.roboto(
+                                                        fontSize: 20),
+                                                  ),
+                                                ))
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }))
+                            : Center(
+                                child: Text('Nothing to show here!'),
+                              ),
+                  ),
+                );
   }
 
   Positioned buildCard(

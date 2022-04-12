@@ -6,9 +6,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/Authentication/pfp.dart';
 import 'package:placementcracker/Widgets/about.dart';
+import 'package:placementcracker/Widgets/ambassadorProgram.dart';
 import 'package:placementcracker/Widgets/feedback.dart';
 import 'package:placementcracker/Widgets/resumeUI.dart';
 import 'package:placementcracker/helper/general.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class drawer extends StatelessWidget {
   drawer({Key? key}) : super(key: key);
@@ -16,6 +18,14 @@ class drawer extends StatelessWidget {
   late var photo = user?.photoURL;
   late var name = user?.displayName;
   General general = new General();
+  launchURLForNotes(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -74,6 +84,12 @@ class drawer extends StatelessWidget {
                     height: 10,
                   ),
                   ListTile(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return campusProgram();
+                      }));
+                    },
                     leading: FaIcon(
                       FontAwesomeIcons.chalkboardTeacher,
                       color: Colors.black,
@@ -105,6 +121,11 @@ class drawer extends StatelessWidget {
                     height: 10,
                   ),
                   ListTile(
+                    onTap: () {
+                      final url =
+                          "https://drive.google.com/drive/folders/12tbSVf-e5dn4d9pq5jQ22tl7hMJrQmEL?usp=sharing";
+                      launchURLForNotes(url);
+                    },
                     leading: FaIcon(
                       FontAwesomeIcons.code,
                       color: Colors.black,

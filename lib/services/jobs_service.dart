@@ -6,7 +6,7 @@ import 'package:placementcracker/modals/jobs.dart';
 
 class JobAPI {
   static Future<HTTPResponse<List<Jobs>>> getJobs() async {
-    String url = 'https://placement-crack.herokuapp.com/jobs';
+    String url = 'http://placement-crack.herokuapp.com/jobs';
     try {
       var response = await get(Uri.parse(url));
       if (response.statusCode == 200) {
