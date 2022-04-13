@@ -9,6 +9,7 @@ import 'package:placementcracker/Widgets/about.dart';
 import 'package:placementcracker/Widgets/ambassadorProgram.dart';
 import 'package:placementcracker/Widgets/feedback.dart';
 import 'package:placementcracker/Widgets/resumeUI.dart';
+import 'package:placementcracker/Widgets/youtubeChannels.dart';
 import 'package:placementcracker/helper/general.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -139,6 +140,12 @@ class drawer extends StatelessWidget {
                     height: 10,
                   ),
                   ListTile(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return YoutubeChannels();
+                      }));
+                    },
                     leading: FaIcon(
                       FontAwesomeIcons.youtube,
                       color: Colors.black,

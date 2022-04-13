@@ -2,6 +2,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:placementcracker/Widgets/ambassadorProgram.dart';
+import 'package:placementcracker/Widgets/resumeUI.dart';
 import 'package:placementcracker/helper/general.dart';
 
 import 'package:placementcracker/providers/google_sign_in.dart';
@@ -77,12 +79,15 @@ class _ProfileState extends State<Profile> {
                     width: MediaQuery.of(context).size.width,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Name: ' + name!,
-                        style: GoogleFonts.roboto(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Name: ' + name!,
+                          style: GoogleFonts.roboto(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ),
@@ -136,32 +141,48 @@ class _ProfileState extends State<Profile> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
-                          elevation: 15,
-                          child: Container(
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) {
+                              return resume();
+                            }));
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                            elevation: 15,
+                            child: Container(
+                                height: 80,
+                                width: MediaQuery.of(context).size.width / 6,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: Image.asset(
+                                  'Assets/images/resume.png',
+                                  fit: BoxFit.cover,
+                                )),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) {
+                              return campusProgram();
+                            }));
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                            elevation: 15,
+                            child: Container(
                               height: 80,
                               width: MediaQuery.of(context).size.width / 6,
                               decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          'Assets/images/courses.jpg')),
                                   borderRadius: BorderRadius.circular(12)),
-                              child: Image.asset(
-                                'Assets/images/resume.png',
-                                fit: BoxFit.cover,
-                              )),
-                        ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
-                          elevation: 15,
-                          child: Container(
-                            height: 80,
-                            width: MediaQuery.of(context).size.width / 6,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'Assets/images/courses.jpg')),
-                                borderRadius: BorderRadius.circular(12)),
+                            ),
                           ),
                         ),
                         Card(

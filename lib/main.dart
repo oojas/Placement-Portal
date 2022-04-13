@@ -7,6 +7,9 @@ import 'package:placementcracker/Widgets/Feed/feed_screen.dart';
 import 'package:placementcracker/Widgets/UserInfo.dart';
 import 'package:placementcracker/Widgets/ambassadorProgram.dart';
 import 'package:placementcracker/Widgets/splash.dart';
+import 'package:placementcracker/Widgets/youtubeChannels.dart';
+import 'package:placementcracker/providers/Channels_Provider/DSAProvider.dart';
+import 'package:placementcracker/providers/Channels_Provider/roadmap_provider.dart';
 import 'package:placementcracker/providers/article_provider.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
 import 'package:placementcracker/providers/job_provider.dart';
@@ -38,10 +41,12 @@ class _myAppState extends State<myApp> {
         ChangeNotifierProvider(create: (context) => JobProvider()),
         ChangeNotifierProvider(create: (context) => ArticleProvider()),
         ChangeNotifierProvider(create: ((context) => ProgramProvider())),
+        ChangeNotifierProvider(create: (context)=>DSAProvider()),
+        ChangeNotifierProvider(create: (context)=>RoadMapProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: FeedScreen(),
+        home: splashScreen(),
       ),
     );
   }
