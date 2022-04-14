@@ -2,6 +2,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:placementcracker/Sqflite/handler.dart';
+import 'package:placementcracker/Sqflite/repo.dart';
 import 'package:placementcracker/Widgets/ambassadorProgram.dart';
 import 'package:placementcracker/Widgets/resumeUI.dart';
 import 'package:placementcracker/helper/general.dart';
@@ -11,6 +13,7 @@ import 'package:placementcracker/providers/userinfo_provider.dart';
 
 import 'package:provider/provider.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:sqflite/sqflite.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -22,6 +25,8 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   // ignore: override_on_non_overriding_member, unnecessary_new
   General general = new General();
+  late List<Map<String, dynamic>> userInfo;
+  Database? _database;
   PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
     packageName: 'Unknown',
@@ -29,8 +34,22 @@ class _ProfileState extends State<Profile> {
     buildNumber: 'Unknown',
     buildSignature: 'Unknown',
   );
+  Future<Database?> openDb() async {
+    _database = await DatabaseHandler().openDB();
+    return _database;
+  }
+
+  Future<void> getFromUser() async {
+    _database = await openDb();
+    UserRepo userRepo = new UserRepo();
+   userInfo= await userRepo.getUsers(_database);
+    await _database?.close();
+  }
+
   @override
   void initState() {
+    getFromUser();
+
     super.initState();
     _initPackageInfo();
   }

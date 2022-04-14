@@ -46,6 +46,7 @@ dependencies:
   percent_indicator: 
   shared_preferences:
   after_layout: 
+  sqflite:
 
 dev_dependencies:
   flutter_test:

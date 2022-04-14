@@ -1,22 +1,22 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart';
+import 'package:placementcracker/modals/YoutubeChannels/core_subjects.dart';
 import 'package:placementcracker/modals/httpresponse.dart';
-import 'package:placementcracker/modals/jobs.dart';
 
-class JobAPI {
-  static Future<HTTPResponse<List<Jobs>>> getJobs() async {
-    String url = 'https://placement-crack.herokuapp.com/jobs';
+class CoreAPI {
+  static Future<HTTPResponse<List<Core>>> getCore() async {
+    String url = 'https://placement-crack.herokuapp.com/subjects';
     try {
       var response = await get(Uri.parse(url));
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
-        List<Jobs> jobList = [];
+        List<Core> coreList = [];
         body.forEach((e) {
-          Jobs job = Jobs.fromJson(e);
-          jobList.add(job);
+          Core core = Core.fromJson(e);
+          coreList.add(core);
         });
-        return HTTPResponse(true, jobList, responseCode: response.statusCode);
+        return HTTPResponse(true, coreList, responseCode: response.statusCode);
       } else {
         return HTTPResponse(false, null,
             message: 'Invalid response', responseCode: response.statusCode);

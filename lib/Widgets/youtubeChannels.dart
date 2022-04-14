@@ -7,10 +7,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/helper/general.dart';
 import 'package:placementcracker/modals/YoutubeChannels/Dsa.dart';
+import 'package:placementcracker/modals/YoutubeChannels/FreeCourse.dart';
+import 'package:placementcracker/modals/YoutubeChannels/core_subjects.dart';
 import 'package:placementcracker/modals/YoutubeChannels/roadMaps.dart';
 import 'package:placementcracker/providers/Channels_Provider/DSAProvider.dart';
+import 'package:placementcracker/providers/Channels_Provider/core_subjects_provider.dart';
+import 'package:placementcracker/providers/Channels_Provider/freecourse_provider.dart';
 import 'package:placementcracker/providers/Channels_Provider/roadmap_provider.dart';
+import 'package:placementcracker/services/Channels_services.dart/core_subjects_services.dart';
 import 'package:placementcracker/services/Channels_services.dart/dsa_service.dart';
+import 'package:placementcracker/services/Channels_services.dart/freecourse_services.dart';
 import 'package:placementcracker/services/Channels_services.dart/roadmaps_services.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -46,32 +52,6 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
     _globalKey.currentState?.hideCurrentSnackBar();
   }
 
-  _getDSA({bool refresh = false}) async {
-    var provider = Provider.of<DSAProvider>(context, listen: false);
-    if (!provider.shouldRefresh) {
-      _showSnackbar('That\'s it for now!', bgColor: Colors.red);
-      return;
-    }
-    if (refresh) _showSnackbar('Loading more...', bgColor: Colors.green);
-
-    var dsaResponse = await DSAAPI.getDSA();
-    var dsaData = dsaResponse.data;
-    bool? responsedsa = dsaResponse.isSuccessful;
-    if (responsedsa!) {
-      if (dsaResponse.data!.isNotEmpty) {
-        if (refresh) {
-          provider.mergedsaList(dsaData!, notify: false);
-        } else {
-          provider.setdsaList(dsaData!, notify: false);
-        }
-      }
-    } else {
-      _showSnackbar(dsaResponse.message.toString(), bgColor: Colors.red);
-    }
-    provider.setIsDSAPageProcessing(false);
-    _hideSnackbar();
-  }
-
   // For Raod Maps
   _getRoadMap({bool refresh = false}) async {
     var provider = Provider.of<RoadMapProvider>(context, listen: false);
@@ -99,19 +79,76 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
     _hideSnackbar();
   }
 
+  //For Free Course
+  _getCourse({bool refresh = false}) async {
+    var provider = Provider.of<FreeCourseProvider>(context, listen: false);
+    if (!provider.shouldRefresh) {
+      _showSnackbar('That\'s it for now!', bgColor: Colors.red);
+      return;
+    }
+    if (refresh) _showSnackbar('Loading more...', bgColor: Colors.green);
+
+    var courseResponse = await FreeCourseAPI.getCourse();
+    var courseData = courseResponse.data;
+    bool? responsecourse = courseResponse.isSuccessful;
+    if (responsecourse!) {
+      if (courseResponse.data!.isNotEmpty) {
+        if (refresh) {
+          provider.mergecourseList(courseData!, notify: false);
+        } else {
+          provider.setcourseList(courseData!, notify: false);
+        }
+      }
+    } else {
+      _showSnackbar(courseResponse.message.toString(), bgColor: Colors.red);
+    }
+    provider.setIsCoursePageProcessing(false);
+    _hideSnackbar();
+  }
+
+  // For Engineering subjects
+  _getCoreSubjects({bool refresh = false}) async {
+    var provider = Provider.of<CoreProvider>(context, listen: false);
+    if (!provider.shouldRefresh) {
+      _showSnackbar('That\'s it for now!', bgColor: Colors.red);
+      return;
+    }
+    if (refresh) _showSnackbar('Loading more...', bgColor: Colors.green);
+
+    var coreResponse = await CoreAPI.getCore();
+    var coreData = coreResponse.data;
+    bool? responsecore = coreResponse.isSuccessful;
+    if (responsecore!) {
+      if (coreResponse.data!.isNotEmpty) {
+        if (refresh) {
+          provider.mergecoreList(coreData!, notify: false);
+        } else {
+          provider.setcoreList(coreData!, notify: false);
+        }
+      }
+    } else {
+      _showSnackbar(coreResponse.message.toString(), bgColor: Colors.red);
+    }
+    provider.setIsCorePageProcessing(false);
+    _hideSnackbar();
+  }
+
   @override
   void initState() {
     _scrollController.addListener(() {
       if (_scrollController.hasClients) {
         if (_scrollController.offset ==
             _scrollController.position.maxScrollExtent) {
-          _getDSA();
           _getRoadMap();
+          _getCourse();
+          _getCoreSubjects();
         }
       }
     });
-    _getDSA(refresh: false);
+
     _getRoadMap(refresh: false);
+    _getCourse(refresh: false);
+    _getCoreSubjects(refresh: false);
     super.initState();
   }
 
@@ -133,41 +170,56 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Data structure channels',
+                      'RoadMaps',
                       style:
                           GoogleFonts.roboto(fontSize: 22, color: Colors.black),
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
-                dsaCard(height, width, general),
+                roadmapCard(height, width, general),
                 SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Roadmaps',
+                      'Free Courses',
                       style:
                           GoogleFonts.roboto(fontSize: 20, color: Colors.black),
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
-                roadmapCard(height, width, general)
+                courseCard(height, width, general),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Engineering Subjects',
+                      style:
+                          GoogleFonts.roboto(fontSize: 20, color: Colors.black),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                coreSubjectCard(height, width, general)
               ],
             ),
           ),
@@ -178,7 +230,7 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
 
   SizedBox roadmapCard(double height, double width, General general) {
     return SizedBox(
-      height: height / 1.6,
+      height: height / 1.7,
       child: Consumer<RoadMapProvider>(
         builder: (_, provider, __) => provider.isRoadMapPageProcessing
             ? Center(
@@ -296,20 +348,20 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
     );
   }
 
-  SizedBox dsaCard(double height, double width, General general) {
+  SizedBox coreSubjectCard(double height, double width, General general) {
     return SizedBox(
-      height: height / 1.5,
-      child: Consumer<DSAProvider>(
-        builder: (_, provider, __) => provider.isDSAPageProcessing
+      height: height / 1.7,
+      child: Consumer<CoreProvider>(
+        builder: (_, provider, __) => provider.isCorePageProcessing
             ? Center(
                 child: CircularProgressIndicator(),
               )
-            : provider.dsaListLength > 0
+            : provider.coreListLength > 0
                 ? ListView.builder(
+                    itemCount: provider.coreListLength,
                     scrollDirection: Axis.horizontal,
-                    itemCount: provider.dsaListLength,
                     itemBuilder: (context, index) {
-                      DSA dsa = provider.getDSAByIndex(index);
+                      Core core = provider.getCoreByIndex(index);
                       return Card(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15)),
@@ -339,7 +391,7 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           child: Image.memory(
-                                            base64Decode(dsa.image.toString()),
+                                            base64Decode(core.image.toString()),
                                             fit: BoxFit.fill,
                                           ),
                                         ),
@@ -352,7 +404,7 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
-                                        dsa.name.toString(),
+                                        core.name.toString(),
                                         style: GoogleFonts.roboto(fontSize: 18),
                                       ),
                                     )),
@@ -368,7 +420,7 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(15.0),
                                         child: Text(
-                                          dsa.description.toString(),
+                                          core.description.toString(),
                                           style: GoogleFonts.roboto(
                                               wordSpacing: 2,
                                               fontSize: 18,
@@ -394,7 +446,127 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
                                                     (states) => Colors.red)),
                                         onPressed: () {
                                           launchURLForChannelLink(
-                                              dsa.link.toString());
+                                              core.link.toString());
+                                        },
+                                        child: FaIcon(
+                                          FontAwesomeIcons.youtube,
+                                          color: Colors.white,
+                                        )),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    })
+                : Center(
+                    child: Text('Nothing to show here!'),
+                  ),
+      ),
+    );
+  }
+
+  SizedBox courseCard(double height, double width, General general) {
+    return SizedBox(
+      height: height / 1.7,
+      child: Consumer<FreeCourseProvider>(
+        builder: (_, provider, __) => provider.isCoursePageProcessing
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : provider.courseListLength > 0
+                ? ListView.builder(
+                    itemCount: provider.courseListLength,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      FreeCourse course = provider.getcourseByIndex(index);
+                      return Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        elevation: 7,
+                        child: Container(
+                          width: width / 1.2,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              gradient: general.backgroundColor),
+                          child: SingleChildScrollView(
+                            physics: BouncingScrollPhysics(),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      elevation: 10,
+                                      child: Container(
+                                        width: width / 1.5,
+                                        height: height / 5,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          child: Image.memory(
+                                            base64Decode(
+                                                course.image.toString()),
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                    width: width,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        course.name.toString(),
+                                        style: GoogleFonts.roboto(fontSize: 18),
+                                      ),
+                                    )),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Card(
+                                    color: Colors.indigo.shade100,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: SizedBox(
+                                      width: width,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(15.0),
+                                        child: Text(
+                                          course.description.toString(),
+                                          style: GoogleFonts.roboto(
+                                              wordSpacing: 2,
+                                              fontSize: 18,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: OutlinedButton(
+                                        style: ButtonStyle(
+                                            elevation:
+                                                MaterialStateProperty.all(10),
+                                            fixedSize:
+                                                MaterialStateProperty.all(
+                                                    Size(30, 40)),
+                                            backgroundColor:
+                                                MaterialStateColor.resolveWith(
+                                                    (states) => Colors.red)),
+                                        onPressed: () {
+                                          launchURLForChannelLink(
+                                              course.link.toString());
                                         },
                                         child: FaIcon(
                                           FontAwesomeIcons.youtube,

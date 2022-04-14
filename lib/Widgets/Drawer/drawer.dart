@@ -34,35 +34,40 @@ class drawer extends StatelessWidget {
         backgroundColor: Colors.indigo.shade200,
         child: ListView(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return Profile();
-                  }));
-                },
-                child: CircleAvatar(
-                    radius: 70, backgroundImage: NetworkImage(photo!)),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    name!,
-                    style: GoogleFonts.roboto(fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
+            Container(
+                color: Colors.indigo.shade400,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) {
+                            return Profile();
+                          }));
+                        },
+                        child: CircleAvatar(
+                            radius: 70, backgroundImage: NetworkImage(photo!)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            name!,
+                            style: GoogleFonts.roboto(fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
             SizedBox(
               height: 30,
             ),
@@ -105,6 +110,25 @@ class drawer extends StatelessWidget {
                   ),
                   ListTile(
                     onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return YoutubeChannels();
+                      }));
+                    },
+                    leading: FaIcon(
+                      FontAwesomeIcons.youtube,
+                      color: Colors.black,
+                    ),
+                    title: Text(
+                      'Youtube channels to follow',
+                      style: GoogleFonts.roboto(fontSize: 18),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ListTile(
+                    onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (_) {
                         return resume();
                       }));
@@ -133,25 +157,6 @@ class drawer extends StatelessWidget {
                     ),
                     title: Text(
                       'Data structure notes',
-                      style: GoogleFonts.roboto(fontSize: 18),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  ListTile(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return YoutubeChannels();
-                      }));
-                    },
-                    leading: FaIcon(
-                      FontAwesomeIcons.youtube,
-                      color: Colors.black,
-                    ),
-                    title: Text(
-                      'Youtube channels to follow',
                       style: GoogleFonts.roboto(fontSize: 18),
                     ),
                   ),

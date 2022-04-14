@@ -8,7 +8,8 @@ import 'package:placementcracker/Widgets/UserInfo.dart';
 import 'package:placementcracker/Widgets/ambassadorProgram.dart';
 import 'package:placementcracker/Widgets/splash.dart';
 import 'package:placementcracker/Widgets/youtubeChannels.dart';
-import 'package:placementcracker/providers/Channels_Provider/DSAProvider.dart';
+import 'package:placementcracker/providers/Channels_Provider/core_subjects_provider.dart';
+import 'package:placementcracker/providers/Channels_Provider/freecourse_provider.dart';
 import 'package:placementcracker/providers/Channels_Provider/roadmap_provider.dart';
 import 'package:placementcracker/providers/article_provider.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
@@ -41,12 +42,13 @@ class _myAppState extends State<myApp> {
         ChangeNotifierProvider(create: (context) => JobProvider()),
         ChangeNotifierProvider(create: (context) => ArticleProvider()),
         ChangeNotifierProvider(create: ((context) => ProgramProvider())),
-        ChangeNotifierProvider(create: (context)=>DSAProvider()),
-        ChangeNotifierProvider(create: (context)=>RoadMapProvider())
+        ChangeNotifierProvider(create: (context)=>FreeCourseProvider()),
+        ChangeNotifierProvider(create: (context)=>RoadMapProvider()),
+        ChangeNotifierProvider(create: (context)=>CoreProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: splashScreen(),
+        home:splashScreen(),
       ),
     );
   }

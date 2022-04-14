@@ -3,14 +3,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/Authentication/pfp.dart';
+import 'package:placementcracker/Sqflite/handler.dart';
+import 'package:placementcracker/Sqflite/repo.dart';
 
 import 'package:placementcracker/Widgets/Drawer/drawer.dart';
 import 'package:placementcracker/Widgets/Feed/feed_screen.dart';
 import 'package:placementcracker/helper/general.dart';
+import 'package:placementcracker/modals/user.dart';
 import 'package:placementcracker/providers/userinfo_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:after_layout/after_layout.dart';
+import 'package:sqflite/sqflite.dart';
 
 // ignore: camel_case_types
 class userInfo extends StatefulWidget {
@@ -28,6 +32,7 @@ class _userInfoState extends State<userInfo>
   TextEditingController _collegeYear = TextEditingController();
   TextEditingController _collegeName = TextEditingController();
   TextEditingController _rollNumber = TextEditingController();
+  Database? _database;
   late AnimationController _controller;
   late Animation _animation;
   FocusNode _focusNode = FocusNode();
@@ -71,6 +76,32 @@ class _userInfoState extends State<userInfo>
     _focusNode.dispose();
 
     super.dispose();
+  }
+
+  Future<Database?> openDb() async {
+    _database = await DatabaseHandler().openDB();
+    return _database;
+  }
+
+  Future<void> insertDB() async {
+    _database = await openDb();
+    UserRepo userRepo = new UserRepo();
+    userRepo.createTable(_database);
+
+    User user = new User(
+        _collegeName.text.toString(),
+        _rollNumber.text.toString(),
+        int.tryParse(_collegeYear.text.toString()));
+
+    await _database?.insert('User', user.toMap());
+    await _database?.close();
+  }
+
+  Future<void> getFromUser() async {
+    _database = await openDb();
+    UserRepo userRepo = new UserRepo();
+    await userRepo.getUsers(_database);
+    await _database?.close();
   }
 
   @override
@@ -253,7 +284,7 @@ class _userInfoState extends State<userInfo>
                                         int.parse(_collegeYear.text));
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(builder: (context) {
-                                  return FeedScreen();
+                                  return Profile();
                                 }));
                               }
                             },
@@ -270,4 +301,9 @@ class _userInfoState extends State<userInfo>
       ),
     );
   }
+
+  // @override
+  // void afterFirstLayout(BuildContext context) {
+  //   // TODO: implement afterFirstLayout
+  // }
 }

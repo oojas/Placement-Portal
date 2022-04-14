@@ -26,6 +26,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     // ignore: unnecessary_new
     _animation1 = new Tween(begin: 0.0, end: 1.0).animate(
         CurvedAnimation(parent: _controller, curve: Curves.easeInOutQuint));
+        
   }
 
   @override
