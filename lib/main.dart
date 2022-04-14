@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:placementcracker/Authentication/login.dart';
+import 'package:placementcracker/Widgets/Courses/mainUI.dart';
 import 'package:placementcracker/Widgets/Feed/feed_screen.dart';
 import 'package:placementcracker/Widgets/UserInfo.dart';
 import 'package:placementcracker/Widgets/ambassadorProgram.dart';

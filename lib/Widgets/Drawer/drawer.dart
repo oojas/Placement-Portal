@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/Authentication/pfp.dart';
+import 'package:placementcracker/Widgets/Courses/mainUI.dart';
 import 'package:placementcracker/Widgets/about.dart';
 import 'package:placementcracker/Widgets/ambassadorProgram.dart';
 import 'package:placementcracker/Widgets/feedback.dart';
@@ -76,7 +77,12 @@ class drawer extends StatelessWidget {
               child: Column(
                 children: [
                   ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return EnteringScreenCourse();
+                      }));
+                    },
                     leading: FaIcon(
                       FontAwesomeIcons.book,
                       color: Colors.black,

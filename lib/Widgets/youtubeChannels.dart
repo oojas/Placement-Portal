@@ -205,6 +205,9 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
                   height: 15,
                 ),
                 courseCard(height, width, general),
+                 SizedBox(
+                  height: 15,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Align(
