@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:placementcracker/Widgets/Courses/web_app.dart';
 import 'package:placementcracker/helper/general.dart';
 
 class EnteringScreenCourse extends StatelessWidget {
@@ -49,6 +50,12 @@ class EnteringScreenCourse extends StatelessWidget {
                         Expanded(
                           child: ListView(children: [
                             ListTile(
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (_) {
+                                  return WebApp();
+                                }));
+                              },
                               title: Text(
                                 'Web/App Development',
                                 style: GoogleFonts.roboto(

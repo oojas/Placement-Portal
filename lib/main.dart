@@ -2,16 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:placementcracker/Authentication/login.dart';
 import 'package:placementcracker/Widgets/Courses/mainUI.dart';
-import 'package:placementcracker/Widgets/Feed/feed_screen.dart';
-import 'package:placementcracker/Widgets/UserInfo.dart';
-import 'package:placementcracker/Widgets/ambassadorProgram.dart';
 import 'package:placementcracker/Widgets/splash.dart';
-import 'package:placementcracker/Widgets/youtubeChannels.dart';
 import 'package:placementcracker/providers/Channels_Provider/core_subjects_provider.dart';
 import 'package:placementcracker/providers/Channels_Provider/freecourse_provider.dart';
 import 'package:placementcracker/providers/Channels_Provider/roadmap_provider.dart';
+import 'package:placementcracker/providers/Courses_providers/web_provider.dart';
 import 'package:placementcracker/providers/article_provider.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
 import 'package:placementcracker/providers/job_provider.dart';
@@ -46,10 +42,11 @@ class _myAppState extends State<myApp> {
         ChangeNotifierProvider(create: (context)=>FreeCourseProvider()),
         ChangeNotifierProvider(create: (context)=>RoadMapProvider()),
         ChangeNotifierProvider(create: (context)=>CoreProvider()),
+        ChangeNotifierProvider(create: ((context) => WebProvider())),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:splashScreen(),
+        home:EnteringScreenCourse(),
       ),
     );
   }

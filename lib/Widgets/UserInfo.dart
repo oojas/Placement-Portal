@@ -284,7 +284,7 @@ class _userInfoState extends State<userInfo>
                                         int.parse(_collegeYear.text));
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(builder: (context) {
-                                  return Profile();
+                                  return FeedScreen();
                                 }));
                               }
                             },
