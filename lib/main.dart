@@ -7,6 +7,7 @@ import 'package:placementcracker/Widgets/splash.dart';
 import 'package:placementcracker/providers/Channels_Provider/core_subjects_provider.dart';
 import 'package:placementcracker/providers/Channels_Provider/freecourse_provider.dart';
 import 'package:placementcracker/providers/Channels_Provider/roadmap_provider.dart';
+import 'package:placementcracker/providers/Courses_providers/cybersecurity_provider.dart';
 import 'package:placementcracker/providers/Courses_providers/web_provider.dart';
 import 'package:placementcracker/providers/article_provider.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
@@ -14,6 +15,7 @@ import 'package:placementcracker/providers/job_provider.dart';
 import 'package:placementcracker/providers/program_provider.dart';
 import 'package:placementcracker/providers/userinfo_provider.dart';
 import 'package:provider/provider.dart';
+import 'providers/Courses_providers/machine_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,10 +45,12 @@ class _myAppState extends State<myApp> {
         ChangeNotifierProvider(create: (context)=>RoadMapProvider()),
         ChangeNotifierProvider(create: (context)=>CoreProvider()),
         ChangeNotifierProvider(create: ((context) => WebProvider())),
+        ChangeNotifierProvider(create: ((context) => CyberProvider())),
+        ChangeNotifierProvider(create: ((context) => MachineProvider())),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:EnteringScreenCourse(),
+        home:splashScreen(),
       ),
     );
   }

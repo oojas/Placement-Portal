@@ -4,20 +4,20 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/helper/general.dart';
-import 'package:placementcracker/modals/Courses/web_app.dart';
-import 'package:placementcracker/providers/Courses_providers/web_provider.dart';
-import 'package:placementcracker/services/Courses_Services/web_services.dart';
+import 'package:placementcracker/modals/Courses/MachineLearning.dart';
+import 'package:placementcracker/providers/Courses_providers/machine_provider.dart';
+import 'package:placementcracker/services/Courses_Services/machine_services.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class WebApp extends StatefulWidget {
-  const WebApp({Key? key}) : super(key: key);
+class MachineLearning extends StatefulWidget {
+  const MachineLearning({Key? key}) : super(key: key);
 
   @override
-  State<WebApp> createState() => _WebAppState();
+  State<MachineLearning> createState() => _MachineLearningState();
 }
 
-class _WebAppState extends State<WebApp> {
+class _MachineLearningState extends State<MachineLearning> {
   launchURLForCourse(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -41,29 +41,29 @@ class _WebAppState extends State<WebApp> {
     _globalKey.currentState?.hideCurrentSnackBar();
   }
 
-  _getWeb({bool refresh = false}) async {
-    var provider = Provider.of<WebProvider>(context, listen: false);
+  _getMachine({bool refresh = false}) async {
+    var provider = Provider.of<MachineProvider>(context, listen: false);
     if (!provider.shouldRefresh) {
       _showSnackbar('That\'s it for now!', bgColor: Colors.red);
       return;
     }
     if (refresh) _showSnackbar('Loading more...', bgColor: Colors.green);
 
-    var webResponse = await WebAPI.getWeb();
-    var webData = webResponse.data;
-    bool? responseWeb = webResponse.isSuccessful;
-    if (responseWeb!) {
-      if (webResponse.data!.isNotEmpty) {
+    var machineResponse = await MachineAPI.getMachine();
+    var machineData = machineResponse.data;
+    bool? responseMachine = machineResponse.isSuccessful;
+    if (responseMachine!) {
+      if (machineResponse.data!.isNotEmpty) {
         if (refresh) {
-          provider.mergewebList(webData!, notify: false);
+          provider.mergemachineList(machineData!, notify: false);
         } else {
-          provider.setwebList(webData!, notify: false);
+          provider.setmachineList(machineData!, notify: false);
         }
       }
     } else {
-      _showSnackbar(webResponse.message.toString(), bgColor: Colors.red);
+      _showSnackbar(machineResponse.message.toString(), bgColor: Colors.red);
     }
-    provider.setIsWebPageProcessing(false);
+    provider.setIsMachinePageProcessing(false);
     _hideSnackbar();
   }
 
@@ -73,11 +73,11 @@ class _WebAppState extends State<WebApp> {
       if (_scrollController.hasClients) {
         if (_scrollController.offset ==
             _scrollController.position.maxScrollExtent) {
-          _getWeb();
+          _getMachine();
         }
       }
     });
-    _getWeb(refresh: false);
+    _getMachine(refresh: false);
     super.initState();
   }
 
@@ -90,22 +90,22 @@ class _WebAppState extends State<WebApp> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Web/App Development',
+            'Machine Learning',
             style: GoogleFonts.roboto(),
           ),
           centerTitle: true,
           backgroundColor: Colors.indigo.shade300,
         ),
-        body: Consumer<WebProvider>(
-          builder: (_, provider, __) => provider.isWebPageProcessing
+        body: Consumer<MachineProvider>(
+          builder: (_, provider, __) => provider.isMachinePageProcessing
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : provider.webListLength > 0
+              : provider.machineListLength > 0
                   ? ListView.builder(
-                      itemCount: provider.webListLength,
+                      itemCount: provider.machineListLength,
                       itemBuilder: ((context, index) {
-                        Web web = provider.getwebByIndex(index);
+                        Machine machine = provider.getMachineByIndex(index);
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Card(
@@ -149,8 +149,8 @@ class _WebAppState extends State<WebApp> {
                                               borderRadius:
                                                   BorderRadius.circular(15),
                                               child: Image.memory(
-                                                base64Decode(
-                                                    web.coursePic.toString()),
+                                                base64Decode(machine.coursePic
+                                                    .toString()),
                                                 fit: BoxFit.fill,
                                               ),
                                             ),
@@ -162,7 +162,7 @@ class _WebAppState extends State<WebApp> {
                                           child: Container(
                                             width: width / 7,
                                             child: Image.memory(base64Decode(
-                                                web.thumbnail.toString())),
+                                                machine.thumbnail.toString())),
                                           ),
                                         )
                                       ],
@@ -173,7 +173,7 @@ class _WebAppState extends State<WebApp> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
-                                        web.name.toString(),
+                                        machine.name.toString(),
                                         style: GoogleFonts.roboto(fontSize: 20),
                                       ),
                                     ),
@@ -189,7 +189,7 @@ class _WebAppState extends State<WebApp> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Text(
-                                            web.description.toString(),
+                                            machine.description.toString(),
                                             style: GoogleFonts.roboto(
                                                 fontSize: 18),
                                           ),
@@ -208,7 +208,7 @@ class _WebAppState extends State<WebApp> {
                                         child: ElevatedButton(
                                             onPressed: () {
                                               launchURLForCourse(
-                                                  web.link.toString());
+                                                  machine.link.toString());
                                             },
                                             style: ButtonStyle(
                                                 elevation:

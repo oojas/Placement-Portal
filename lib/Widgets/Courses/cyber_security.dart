@@ -4,20 +4,20 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/helper/general.dart';
-import 'package:placementcracker/modals/Courses/web_app.dart';
-import 'package:placementcracker/providers/Courses_providers/web_provider.dart';
-import 'package:placementcracker/services/Courses_Services/web_services.dart';
+import 'package:placementcracker/modals/Courses/CyberSecurity.dart';
+import 'package:placementcracker/providers/Courses_providers/cybersecurity_provider.dart';
+import 'package:placementcracker/services/Courses_Services/cybersecurity_service.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class WebApp extends StatefulWidget {
-  const WebApp({Key? key}) : super(key: key);
+class CyberSecurity extends StatefulWidget {
+  const CyberSecurity({Key? key}) : super(key: key);
 
   @override
-  State<WebApp> createState() => _WebAppState();
+  State<CyberSecurity> createState() => _CyberSecurityState();
 }
 
-class _WebAppState extends State<WebApp> {
+class _CyberSecurityState extends State<CyberSecurity> {
   launchURLForCourse(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -41,29 +41,29 @@ class _WebAppState extends State<WebApp> {
     _globalKey.currentState?.hideCurrentSnackBar();
   }
 
-  _getWeb({bool refresh = false}) async {
-    var provider = Provider.of<WebProvider>(context, listen: false);
+  _getCyber({bool refresh = false}) async {
+    var provider = Provider.of<CyberProvider>(context, listen: false);
     if (!provider.shouldRefresh) {
       _showSnackbar('That\'s it for now!', bgColor: Colors.red);
       return;
     }
     if (refresh) _showSnackbar('Loading more...', bgColor: Colors.green);
 
-    var webResponse = await WebAPI.getWeb();
-    var webData = webResponse.data;
-    bool? responseWeb = webResponse.isSuccessful;
-    if (responseWeb!) {
-      if (webResponse.data!.isNotEmpty) {
+    var cyberResponse = await CyberAPI.getCyber();
+    var cyberData = cyberResponse.data;
+    bool? responseCyber = cyberResponse.isSuccessful;
+    if (responseCyber!) {
+      if (cyberResponse.data!.isNotEmpty) {
         if (refresh) {
-          provider.mergewebList(webData!, notify: false);
+          provider.mergecyberList(cyberData!, notify: false);
         } else {
-          provider.setwebList(webData!, notify: false);
+          provider.setcyberList(cyberData!, notify: false);
         }
       }
     } else {
-      _showSnackbar(webResponse.message.toString(), bgColor: Colors.red);
+      _showSnackbar(cyberResponse.message.toString(), bgColor: Colors.red);
     }
-    provider.setIsWebPageProcessing(false);
+    provider.setIsCyberPageProcessing(false);
     _hideSnackbar();
   }
 
@@ -73,11 +73,11 @@ class _WebAppState extends State<WebApp> {
       if (_scrollController.hasClients) {
         if (_scrollController.offset ==
             _scrollController.position.maxScrollExtent) {
-          _getWeb();
+          _getCyber();
         }
       }
     });
-    _getWeb(refresh: false);
+    _getCyber(refresh: false);
     super.initState();
   }
 
@@ -90,22 +90,22 @@ class _WebAppState extends State<WebApp> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Web/App Development',
+            'Cyber Security',
             style: GoogleFonts.roboto(),
           ),
           centerTitle: true,
           backgroundColor: Colors.indigo.shade300,
         ),
-        body: Consumer<WebProvider>(
-          builder: (_, provider, __) => provider.isWebPageProcessing
+        body: Consumer<CyberProvider>(
+          builder: (_, provider, __) => provider.isCyberPageProcessing
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : provider.webListLength > 0
+              : provider.cyberListLength > 0
                   ? ListView.builder(
-                      itemCount: provider.webListLength,
+                      itemCount: provider.cyberListLength,
                       itemBuilder: ((context, index) {
-                        Web web = provider.getwebByIndex(index);
+                        Cyber cyber = provider.getCyberByIndex(index);
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Card(
@@ -150,7 +150,7 @@ class _WebAppState extends State<WebApp> {
                                                   BorderRadius.circular(15),
                                               child: Image.memory(
                                                 base64Decode(
-                                                    web.coursePic.toString()),
+                                                    cyber.coursePic.toString()),
                                                 fit: BoxFit.fill,
                                               ),
                                             ),
@@ -162,7 +162,7 @@ class _WebAppState extends State<WebApp> {
                                           child: Container(
                                             width: width / 7,
                                             child: Image.memory(base64Decode(
-                                                web.thumbnail.toString())),
+                                                cyber.thumbnail.toString())),
                                           ),
                                         )
                                       ],
@@ -173,7 +173,7 @@ class _WebAppState extends State<WebApp> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
-                                        web.name.toString(),
+                                        cyber.name.toString(),
                                         style: GoogleFonts.roboto(fontSize: 20),
                                       ),
                                     ),
@@ -189,7 +189,7 @@ class _WebAppState extends State<WebApp> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Text(
-                                            web.description.toString(),
+                                            cyber.description.toString(),
                                             style: GoogleFonts.roboto(
                                                 fontSize: 18),
                                           ),
@@ -208,7 +208,7 @@ class _WebAppState extends State<WebApp> {
                                         child: ElevatedButton(
                                             onPressed: () {
                                               launchURLForCourse(
-                                                  web.link.toString());
+                                                  cyber.link.toString());
                                             },
                                             style: ButtonStyle(
                                                 elevation:

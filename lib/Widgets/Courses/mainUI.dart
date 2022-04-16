@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:placementcracker/Widgets/Courses/cyber_security.dart';
+import 'package:placementcracker/Widgets/Courses/machinelearning.dart';
 import 'package:placementcracker/Widgets/Courses/web_app.dart';
 import 'package:placementcracker/helper/general.dart';
 
@@ -70,6 +72,12 @@ class EnteringScreenCourse extends StatelessWidget {
                               height: 30,
                             ),
                             ListTile(
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (_) {
+                                  return CyberSecurity();
+                                }));
+                              },
                               title: Text(
                                 'Cyber Security',
                                 style: GoogleFonts.roboto(
@@ -84,8 +92,14 @@ class EnteringScreenCourse extends StatelessWidget {
                               height: 30,
                             ),
                             ListTile(
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (_) {
+                                  return MachineLearning();
+                                }));
+                              },
                               title: Text(
-                                'Artificial Intelligence/ Machine Learning',
+                                'Machine Learning',
                                 style: GoogleFonts.roboto(
                                     fontSize: 16, color: Colors.black),
                               ),
