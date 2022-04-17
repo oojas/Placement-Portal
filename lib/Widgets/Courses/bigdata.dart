@@ -4,20 +4,20 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/helper/general.dart';
-import 'package:placementcracker/modals/Courses/CyberSecurity.dart';
-import 'package:placementcracker/providers/Courses_providers/cybersecurity_provider.dart';
-import 'package:placementcracker/services/Courses_Services/cybersecurity_service.dart';
+import 'package:placementcracker/modals/Courses/bigdata.dart';
+import 'package:placementcracker/providers/Courses_providers/bigdata_provider.dart';
+import 'package:placementcracker/services/Channels_services.dart/bigdata_services.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class CyberSecurity extends StatefulWidget {
-  const CyberSecurity({Key? key}) : super(key: key);
+class BigData extends StatefulWidget {
+  const BigData({Key? key}) : super(key: key);
 
   @override
-  State<CyberSecurity> createState() => _CyberSecurityState();
+  State<BigData> createState() => _BigDataState();
 }
 
-class _CyberSecurityState extends State<CyberSecurity> {
+class _BigDataState extends State<BigData> {
   launchURLForCourse(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -41,29 +41,29 @@ class _CyberSecurityState extends State<CyberSecurity> {
     _globalKey.currentState?.hideCurrentSnackBar();
   }
 
-  _getCyber({bool refresh = false}) async {
-    var provider = Provider.of<CyberProvider>(context, listen: false);
+  _getData({bool refresh = false}) async {
+    var provider = Provider.of<DataProvider>(context, listen: false);
     if (!provider.shouldRefresh) {
       _showSnackbar('That\'s it for now!', bgColor: Colors.red);
       return;
     }
     if (refresh) _showSnackbar('Loading more...', bgColor: Colors.green);
 
-    var cyberResponse = await CyberAPI.getCyber();
-    var cyberData = cyberResponse.data;
-    bool? responseCyber = cyberResponse.isSuccessful;
-    if (responseCyber!) {
-      if (cyberResponse.data!.isNotEmpty) {
+    var dataResponse = await DataAPI.getData();
+    var dataData = dataResponse.data;
+    bool? responseData = dataResponse.isSuccessful;
+    if (responseData!) {
+      if (dataResponse.data!.isNotEmpty) {
         if (refresh) {
-          provider.mergecyberList(cyberData!, notify: false);
+          provider.mergedataList(dataData!, notify: false);
         } else {
-          provider.setcyberList(cyberData!, notify: false);
+          provider.setdataList(dataData!, notify: false);
         }
       }
     } else {
-      _showSnackbar(cyberResponse.message.toString(), bgColor: Colors.red);
+      _showSnackbar(dataResponse.message.toString(), bgColor: Colors.red);
     }
-    provider.setIsCyberPageProcessing(false);
+    provider.setIsDataPageProcessing(false);
     _hideSnackbar();
   }
 
@@ -73,11 +73,11 @@ class _CyberSecurityState extends State<CyberSecurity> {
       if (_scrollController.hasClients) {
         if (_scrollController.offset ==
             _scrollController.position.maxScrollExtent) {
-          _getCyber();
+          _getData();
         }
       }
     });
-    _getCyber(refresh: false);
+    _getData(refresh: false);
     super.initState();
   }
 
@@ -90,22 +90,22 @@ class _CyberSecurityState extends State<CyberSecurity> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Cyber Security',
+            'Big Data',
             style: GoogleFonts.roboto(),
           ),
           centerTitle: true,
           backgroundColor: Colors.indigo.shade300,
         ),
-        body: Consumer<CyberProvider>(
-          builder: (_, provider, __) => provider.isCyberPageProcessing
+        body: Consumer<DataProvider>(
+          builder: (_, provider, __) => provider.isDataPageProcessing
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : provider.cyberListLength > 0
+              : provider.dataListLength > 0
                   ? ListView.builder(
-                      itemCount: provider.cyberListLength,
+                      itemCount: provider.dataListLength,
                       itemBuilder: ((context, index) {
-                        Cyber cyber = provider.getCyberByIndex(index);
+                        Data data = provider.getDataByIndex(index);
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Card(
@@ -144,13 +144,13 @@ class _CyberSecurityState extends State<CyberSecurity> {
                                                   BorderRadius.circular(15)),
                                           child: Container(
                                             width: width / 1.8,
-                                            height: 60,
+                                            height: height / 5,
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(15),
                                               child: Image.memory(
                                                 base64Decode(
-                                                    cyber.coursePic.toString()),
+                                                    data.coursePic.toString()),
                                                 fit: BoxFit.fill,
                                               ),
                                             ),
@@ -161,8 +161,12 @@ class _CyberSecurityState extends State<CyberSecurity> {
                                               top: 8.0, left: 20),
                                           child: Container(
                                             width: width / 7,
-                                            child: Image.memory(base64Decode(
-                                                cyber.thumbnail.toString())),
+                                            height: 60,
+                                            child: Image.memory(
+                                              base64Decode(
+                                                  data.thumbnail.toString()),
+                                              fit: BoxFit.fill,
+                                            ),
                                           ),
                                         )
                                       ],
@@ -173,7 +177,7 @@ class _CyberSecurityState extends State<CyberSecurity> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
-                                        cyber.name.toString(),
+                                        data.name.toString(),
                                         style: GoogleFonts.roboto(fontSize: 20),
                                       ),
                                     ),
@@ -189,7 +193,7 @@ class _CyberSecurityState extends State<CyberSecurity> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Text(
-                                            cyber.description.toString(),
+                                            data.description.toString(),
                                             style: GoogleFonts.roboto(
                                                 fontSize: 18),
                                           ),
@@ -208,7 +212,7 @@ class _CyberSecurityState extends State<CyberSecurity> {
                                         child: ElevatedButton(
                                             onPressed: () {
                                               launchURLForCourse(
-                                                  cyber.link.toString());
+                                                  data.link.toString());
                                             },
                                             style: ButtonStyle(
                                                 elevation:

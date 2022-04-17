@@ -139,7 +139,6 @@ class _FeedScreenState extends State<FeedScreen> {
             width: double.infinity,
             height: double.infinity,
             child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [

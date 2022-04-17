@@ -4,20 +4,20 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/helper/general.dart';
-import 'package:placementcracker/modals/Courses/CyberSecurity.dart';
-import 'package:placementcracker/providers/Courses_providers/cybersecurity_provider.dart';
-import 'package:placementcracker/services/Courses_Services/cybersecurity_service.dart';
+import 'package:placementcracker/modals/Courses/cloudcomputing.dart';
+import 'package:placementcracker/providers/Courses_providers/cloud_providers.dart';
+import 'package:placementcracker/services/Courses_Services/cloud_services.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class CloudComputing extends StatefulWidget {
-  const CloudComputing({Key? key}) : super(key: key);
+class CloudUI extends StatefulWidget {
+  const CloudUI({Key? key}) : super(key: key);
 
   @override
-  State<CloudComputing> createState() => _CloudComputingState();
+  State<CloudUI> createState() => _CloudUIState();
 }
 
-class _CloudComputingState extends State<CloudComputing> {
+class _CloudUIState extends State<CloudUI> {
   launchURLForCourse(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -41,29 +41,29 @@ class _CloudComputingState extends State<CloudComputing> {
     _globalKey.currentState?.hideCurrentSnackBar();
   }
 
-  _getCyber({bool refresh = false}) async {
-    var provider = Provider.of<CyberProvider>(context, listen: false);
+  _getCloud({bool refresh = false}) async {
+    var provider = Provider.of<CloudProvider>(context, listen: false);
     if (!provider.shouldRefresh) {
       _showSnackbar('That\'s it for now!', bgColor: Colors.red);
       return;
     }
     if (refresh) _showSnackbar('Loading more...', bgColor: Colors.green);
 
-    var cyberResponse = await CyberAPI.getCyber();
-    var cyberData = cyberResponse.data;
-    bool? responseCyber = cyberResponse.isSuccessful;
-    if (responseCyber!) {
-      if (cyberResponse.data!.isNotEmpty) {
+    var cloudResponse = await CloudAPI.getCloud();
+    var cloudData = cloudResponse.data;
+    bool? responseCloud = cloudResponse.isSuccessful;
+    if (responseCloud!) {
+      if (cloudResponse.data!.isNotEmpty) {
         if (refresh) {
-          provider.mergecyberList(cyberData!, notify: false);
+          provider.mergecloudList(cloudData!, notify: false);
         } else {
-          provider.setcyberList(cyberData!, notify: false);
+          provider.setcloudList(cloudData!, notify: false);
         }
       }
     } else {
-      _showSnackbar(cyberResponse.message.toString(), bgColor: Colors.red);
+      _showSnackbar(cloudResponse.message.toString(), bgColor: Colors.red);
     }
-    provider.setIsCyberPageProcessing(false);
+    provider.setIsCloudPageProcessing(false);
     _hideSnackbar();
   }
 
@@ -73,11 +73,11 @@ class _CloudComputingState extends State<CloudComputing> {
       if (_scrollController.hasClients) {
         if (_scrollController.offset ==
             _scrollController.position.maxScrollExtent) {
-          _getCyber();
+          _getCloud();
         }
       }
     });
-    _getCyber(refresh: false);
+    _getCloud(refresh: false);
     super.initState();
   }
 
@@ -96,16 +96,16 @@ class _CloudComputingState extends State<CloudComputing> {
           centerTitle: true,
           backgroundColor: Colors.indigo.shade300,
         ),
-        body: Consumer<CyberProvider>(
-          builder: (_, provider, __) => provider.isCyberPageProcessing
+        body: Consumer<CloudProvider>(
+          builder: (_, provider, __) => provider.isCloudPageProcessing
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : provider.cyberListLength > 0
+              : provider.cloudListLength > 0
                   ? ListView.builder(
-                      itemCount: provider.cyberListLength,
+                      itemCount: provider.cloudListLength,
                       itemBuilder: ((context, index) {
-                        Cyber cyber = provider.getCyberByIndex(index);
+                        CloudComputing cl = provider.getCloudByIndex(index);
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Card(
@@ -150,7 +150,7 @@ class _CloudComputingState extends State<CloudComputing> {
                                                   BorderRadius.circular(15),
                                               child: Image.memory(
                                                 base64Decode(
-                                                    cyber.coursePic.toString()),
+                                                    cl.coursePic.toString()),
                                                 fit: BoxFit.fill,
                                               ),
                                             ),
@@ -161,8 +161,10 @@ class _CloudComputingState extends State<CloudComputing> {
                                               top: 8.0, left: 20),
                                           child: Container(
                                             width: width / 7,
+                                            height: 60,
                                             child: Image.memory(base64Decode(
-                                                cyber.thumbnail.toString())),
+                                                cl.thumbnail.toString(),
+                                                ),fit: BoxFit.fill,),
                                           ),
                                         )
                                       ],
@@ -173,7 +175,7 @@ class _CloudComputingState extends State<CloudComputing> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
-                                        cyber.name.toString(),
+                                        cl.name.toString(),
                                         style: GoogleFonts.roboto(fontSize: 20),
                                       ),
                                     ),
@@ -189,7 +191,7 @@ class _CloudComputingState extends State<CloudComputing> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Text(
-                                            cyber.description.toString(),
+                                            cl.description.toString(),
                                             style: GoogleFonts.roboto(
                                                 fontSize: 18),
                                           ),
@@ -208,7 +210,7 @@ class _CloudComputingState extends State<CloudComputing> {
                                         child: ElevatedButton(
                                             onPressed: () {
                                               launchURLForCourse(
-                                                  cyber.link.toString());
+                                                  cl.link.toString());
                                             },
                                             style: ButtonStyle(
                                                 elevation:

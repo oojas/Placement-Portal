@@ -144,7 +144,7 @@ class _WebAppState extends State<WebApp> {
                                                   BorderRadius.circular(15)),
                                           child: Container(
                                             width: width / 1.8,
-                                            height: height / 5,
+                                            height: 60,
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(15),

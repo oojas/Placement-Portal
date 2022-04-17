@@ -7,7 +7,10 @@ import 'package:placementcracker/Widgets/splash.dart';
 import 'package:placementcracker/providers/Channels_Provider/core_subjects_provider.dart';
 import 'package:placementcracker/providers/Channels_Provider/freecourse_provider.dart';
 import 'package:placementcracker/providers/Channels_Provider/roadmap_provider.dart';
+import 'package:placementcracker/providers/Courses_providers/bigdata_provider.dart';
+import 'package:placementcracker/providers/Courses_providers/cloud_providers.dart';
 import 'package:placementcracker/providers/Courses_providers/cybersecurity_provider.dart';
+import 'package:placementcracker/providers/Courses_providers/devops_provider.dart';
 import 'package:placementcracker/providers/Courses_providers/web_provider.dart';
 import 'package:placementcracker/providers/article_provider.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
@@ -47,6 +50,9 @@ class _myAppState extends State<myApp> {
         ChangeNotifierProvider(create: ((context) => WebProvider())),
         ChangeNotifierProvider(create: ((context) => CyberProvider())),
         ChangeNotifierProvider(create: ((context) => MachineProvider())),
+        ChangeNotifierProvider(create: ((context) => CloudProvider())),
+        ChangeNotifierProvider(create: ((context) => DataProvider())),
+        ChangeNotifierProvider(create: ((context) => DevProvider())),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
