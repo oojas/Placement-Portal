@@ -6,7 +6,7 @@ import 'package:placementcracker/modals/httpresponse.dart';
 
 class CyberAPI {
   static Future<HTTPResponse<List<Cyber>>> getCyber() async {
-    String url = 'https://placement-crack.herokuapp.com/cybersecurity';
+    String url = 'https://crack-placement.herokuapp.com/cybersecurity';
     try {
       var response = await get(Uri.parse(url));
       if (response.statusCode == 200) {

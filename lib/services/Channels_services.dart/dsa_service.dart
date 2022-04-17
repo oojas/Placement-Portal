@@ -7,7 +7,7 @@ import 'package:placementcracker/modals/httpresponse.dart';
 
 class DSAAPI {
   static Future<HTTPResponse<List<DSA>>> getDSA() async {
-    String url = 'https://placement-crack.herokuapp.com/dsaChannels';
+    String url = 'https://crack-placement.herokuapp.com/dsaChannels';
     try {
       var response = await get(Uri.parse(url));
       if (response.statusCode == 200) {

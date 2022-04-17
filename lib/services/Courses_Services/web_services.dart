@@ -6,7 +6,7 @@ import 'package:placementcracker/modals/httpresponse.dart';
 
 class WebAPI {
   static Future<HTTPResponse<List<Web>>> getWeb() async {
-    String url = 'https://placement-crack.herokuapp.com/webdev';
+    String url = 'https://crack-placement.herokuapp.com/webdev';
     try {
       var response = await get(Uri.parse(url));
       if (response.statusCode == 200) {

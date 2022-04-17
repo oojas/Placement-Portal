@@ -6,7 +6,7 @@ import 'package:placementcracker/modals/httpresponse.dart';
 
 class MachineAPI {
   static Future<HTTPResponse<List<Machine>>> getMachine() async {
-    String url = 'https://placement-crack.herokuapp.com/machinelearning';
+    String url = 'https://crack-placement.herokuapp.com/machinelearning';
     try {
       var response = await get(Uri.parse(url));
       if (response.statusCode == 200) {

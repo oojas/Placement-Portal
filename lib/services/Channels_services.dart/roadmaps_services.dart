@@ -6,7 +6,7 @@ import 'package:placementcracker/modals/httpresponse.dart';
 
 class RoadMapAPI {
   static Future<HTTPResponse<List<RoadMaps>>> getRoadMap() async {
-    String url = 'https://placement-crack.herokuapp.com/roadMaps';
+    String url = 'https://crack-placement.herokuapp.com/roadMaps';
     try {
       var response = await get(Uri.parse(url));
       if (response.statusCode == 200) {

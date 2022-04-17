@@ -7,7 +7,7 @@ import 'package:placementcracker/modals/httpresponse.dart';
 
 class FreeCourseAPI {
   static Future<HTTPResponse<List<FreeCourse>>> getCourse() async {
-    String url = 'https://placement-crack.herokuapp.com/freeCourses';
+    String url = 'https://crack-placement.herokuapp.com/freeCourses';
     try {
       var response = await get(Uri.parse(url));
       if (response.statusCode == 200) {
