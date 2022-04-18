@@ -47,7 +47,7 @@ dependencies:
   shared_preferences:
   after_layout: 
   sqflite:
-  
+  readmore:
 
 dev_dependencies:
   flutter_test:

@@ -8,6 +8,7 @@ import 'package:placementcracker/modals/Courses/devops.dart';
 import 'package:placementcracker/providers/Courses_providers/devops_provider.dart';
 import 'package:placementcracker/services/Courses_Services/devops_service.dart';
 import 'package:provider/provider.dart';
+import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Devops extends StatefulWidget {
@@ -192,10 +193,21 @@ class _DevopsState extends State<Devops> {
                                       child: Container(
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Text(
+                                          child: ReadMoreText(
                                             dev.description.toString(),
                                             style: GoogleFonts.roboto(
                                                 fontSize: 18),
+                                            textAlign: TextAlign.justify,
+                                            trimMode: TrimMode.Line,
+                                            trimLines: 4,
+                                            trimCollapsedText: 'Read More',
+                                            trimExpandedText: 'Show less',
+                                            lessStyle: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                            moreStyle: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                         width: width,

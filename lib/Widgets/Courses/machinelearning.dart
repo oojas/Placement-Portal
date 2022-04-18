@@ -8,6 +8,7 @@ import 'package:placementcracker/modals/Courses/MachineLearning.dart';
 import 'package:placementcracker/providers/Courses_providers/machine_provider.dart';
 import 'package:placementcracker/services/Courses_Services/machine_services.dart';
 import 'package:provider/provider.dart';
+import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MachineLearning extends StatefulWidget {
@@ -162,9 +163,11 @@ class _MachineLearningState extends State<MachineLearning> {
                                           child: Container(
                                             width: width / 7,
                                             height: 60,
-                                            child: Image.memory(base64Decode(
-                                                machine.thumbnail.toString()),
-                                                fit: BoxFit.fill,),
+                                            child: Image.memory(
+                                              base64Decode(
+                                                  machine.thumbnail.toString()),
+                                              fit: BoxFit.fill,
+                                            ),
                                           ),
                                         )
                                       ],
@@ -190,10 +193,21 @@ class _MachineLearningState extends State<MachineLearning> {
                                       child: Container(
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Text(
+                                          child: ReadMoreText(
                                             machine.description.toString(),
                                             style: GoogleFonts.roboto(
                                                 fontSize: 18),
+                                            textAlign: TextAlign.justify,
+                                            trimMode: TrimMode.Line,
+                                            trimLines: 4,
+                                            trimCollapsedText: 'Read More',
+                                            trimExpandedText: 'Show less',
+                                            lessStyle: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                            moreStyle: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                         width: width,

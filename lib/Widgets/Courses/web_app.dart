@@ -9,6 +9,7 @@ import 'package:placementcracker/providers/Courses_providers/web_provider.dart';
 import 'package:placementcracker/services/Courses_Services/web_services.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:readmore/readmore.dart';
 
 class WebApp extends StatefulWidget {
   const WebApp({Key? key}) : super(key: key);
@@ -192,10 +193,21 @@ class _WebAppState extends State<WebApp> {
                                       child: Container(
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Text(
+                                          child: ReadMoreText(
                                             web.description.toString(),
                                             style: GoogleFonts.roboto(
                                                 fontSize: 18),
+                                            textAlign: TextAlign.justify,
+                                            trimMode: TrimMode.Line,
+                                            trimLines: 4,
+                                            trimCollapsedText: 'Read More',
+                                            trimExpandedText: 'Show less',
+                                            lessStyle: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                            moreStyle: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                         width: width,

@@ -6,19 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/helper/general.dart';
-import 'package:placementcracker/modals/YoutubeChannels/Dsa.dart';
+
 import 'package:placementcracker/modals/YoutubeChannels/FreeCourse.dart';
 import 'package:placementcracker/modals/YoutubeChannels/core_subjects.dart';
 import 'package:placementcracker/modals/YoutubeChannels/roadMaps.dart';
-import 'package:placementcracker/providers/Channels_Provider/DSAProvider.dart';
+
 import 'package:placementcracker/providers/Channels_Provider/core_subjects_provider.dart';
 import 'package:placementcracker/providers/Channels_Provider/freecourse_provider.dart';
 import 'package:placementcracker/providers/Channels_Provider/roadmap_provider.dart';
 import 'package:placementcracker/services/Channels_services.dart/core_subjects_services.dart';
-import 'package:placementcracker/services/Channels_services.dart/dsa_service.dart';
+
 import 'package:placementcracker/services/Channels_services.dart/freecourse_services.dart';
 import 'package:placementcracker/services/Channels_services.dart/roadmaps_services.dart';
 import 'package:provider/provider.dart';
+import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class YoutubeChannels extends StatefulWidget {
@@ -205,7 +206,7 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
                   height: 15,
                 ),
                 courseCard(height, width, general),
-                 SizedBox(
+                SizedBox(
                   height: 15,
                 ),
                 Padding(
@@ -303,12 +304,23 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
                                       width: width,
                                       child: Padding(
                                         padding: const EdgeInsets.all(15.0),
-                                        child: Text(
+                                        child: ReadMoreText(
                                           roadMaps.description.toString(),
                                           style: GoogleFonts.roboto(
                                               wordSpacing: 2,
                                               fontSize: 18,
                                               color: Colors.black),
+                                          textAlign: TextAlign.justify,
+                                          trimMode: TrimMode.Line,
+                                          trimLines: 4,
+                                          trimCollapsedText: 'Read More',
+                                          trimExpandedText: 'Show less',
+                                          lessStyle: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
+                                          moreStyle: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                     ),
@@ -422,12 +434,23 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
                                       width: width,
                                       child: Padding(
                                         padding: const EdgeInsets.all(15.0),
-                                        child: Text(
+                                        child: ReadMoreText(
                                           core.description.toString(),
                                           style: GoogleFonts.roboto(
                                               wordSpacing: 2,
                                               fontSize: 18,
                                               color: Colors.black),
+                                          textAlign: TextAlign.justify,
+                                          trimMode: TrimMode.Line,
+                                          trimLines: 4,
+                                          trimCollapsedText: 'Read More',
+                                          trimExpandedText: 'Show less',
+                                          lessStyle: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
+                                          moreStyle: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                     ),
@@ -542,12 +565,23 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
                                       width: width,
                                       child: Padding(
                                         padding: const EdgeInsets.all(15.0),
-                                        child: Text(
+                                        child: ReadMoreText(
                                           course.description.toString(),
                                           style: GoogleFonts.roboto(
                                               wordSpacing: 2,
                                               fontSize: 18,
                                               color: Colors.black),
+                                          textAlign: TextAlign.justify,
+                                          trimMode: TrimMode.Line,
+                                          trimLines: 4,
+                                          trimCollapsedText: 'Read More',
+                                          trimExpandedText: 'Show less',
+                                          lessStyle: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
+                                          moreStyle: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                     ),

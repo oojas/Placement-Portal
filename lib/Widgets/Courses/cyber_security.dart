@@ -8,6 +8,7 @@ import 'package:placementcracker/modals/Courses/CyberSecurity.dart';
 import 'package:placementcracker/providers/Courses_providers/cybersecurity_provider.dart';
 import 'package:placementcracker/services/Courses_Services/cybersecurity_service.dart';
 import 'package:provider/provider.dart';
+import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CyberSecurity extends StatefulWidget {
@@ -190,10 +191,21 @@ class _CyberSecurityState extends State<CyberSecurity> {
                                       child: Container(
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Text(
+                                          child: ReadMoreText(
                                             cyber.description.toString(),
                                             style: GoogleFonts.roboto(
                                                 fontSize: 18),
+                                            textAlign: TextAlign.justify,
+                                            trimMode: TrimMode.Line,
+                                            trimLines: 4,
+                                            trimCollapsedText: 'Read More',
+                                            trimExpandedText: 'Show less',
+                                            lessStyle: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                            moreStyle: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                         width: width,

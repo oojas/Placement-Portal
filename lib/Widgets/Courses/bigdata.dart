@@ -8,6 +8,7 @@ import 'package:placementcracker/modals/Courses/bigdata.dart';
 import 'package:placementcracker/providers/Courses_providers/bigdata_provider.dart';
 import 'package:placementcracker/services/Channels_services.dart/bigdata_services.dart';
 import 'package:provider/provider.dart';
+import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BigData extends StatefulWidget {
@@ -192,10 +193,21 @@ class _BigDataState extends State<BigData> {
                                       child: Container(
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Text(
+                                          child: ReadMoreText(
                                             data.description.toString(),
                                             style: GoogleFonts.roboto(
                                                 fontSize: 18),
+                                            textAlign: TextAlign.justify,
+                                            trimMode: TrimMode.Line,
+                                            trimLines: 4,
+                                            trimCollapsedText: 'Read More',
+                                            trimExpandedText: 'Show less',
+                                            lessStyle: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                            moreStyle: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                         width: width,
