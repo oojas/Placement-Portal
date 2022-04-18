@@ -197,15 +197,16 @@ class _BigDataState extends State<BigData> {
                                             data.description.toString(),
                                             style: GoogleFonts.roboto(
                                                 fontSize: 18),
-                                            textAlign: TextAlign.justify,
                                             trimMode: TrimMode.Line,
                                             trimLines: 4,
                                             trimCollapsedText: 'Read More',
                                             trimExpandedText: 'Show less',
                                             lessStyle: TextStyle(
+                                                fontSize: 15,
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.bold),
                                             moreStyle: TextStyle(
+                                                fontSize: 15,
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.bold),
                                           ),

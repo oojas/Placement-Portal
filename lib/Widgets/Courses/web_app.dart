@@ -197,16 +197,17 @@ class _WebAppState extends State<WebApp> {
                                             web.description.toString(),
                                             style: GoogleFonts.roboto(
                                                 fontSize: 18),
-                                            textAlign: TextAlign.justify,
                                             trimMode: TrimMode.Line,
                                             trimLines: 4,
                                             trimCollapsedText: 'Read More',
                                             trimExpandedText: 'Show less',
                                             lessStyle: TextStyle(
                                                 color: Colors.black,
+                                                fontSize: 15,
                                                 fontWeight: FontWeight.bold),
                                             moreStyle: TextStyle(
                                                 color: Colors.black,
+                                                fontSize: 15,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ),
