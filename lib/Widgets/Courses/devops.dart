@@ -90,7 +90,7 @@ class _DevopsState extends State<Devops> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Big Data',
+            'Devops',
             style: GoogleFonts.roboto(),
           ),
           centerTitle: true,

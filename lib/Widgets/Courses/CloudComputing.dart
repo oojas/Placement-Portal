@@ -162,9 +162,12 @@ class _CloudUIState extends State<CloudUI> {
                                           child: Container(
                                             width: width / 7,
                                             height: 60,
-                                            child: Image.memory(base64Decode(
+                                            child: Image.memory(
+                                              base64Decode(
                                                 cl.thumbnail.toString(),
-                                                ),fit: BoxFit.fill,),
+                                              ),
+                                              fit: BoxFit.fill,
+                                            ),
                                           ),
                                         )
                                       ],

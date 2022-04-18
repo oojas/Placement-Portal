@@ -42,7 +42,7 @@ class _ProfileState extends State<Profile> {
   Future<void> getFromUser() async {
     _database = await openDb();
     UserRepo userRepo = new UserRepo();
-   userInfo= await userRepo.getUsers(_database);
+    userInfo = await userRepo.getUsers(_database);
     await _database?.close();
   }
 
@@ -204,18 +204,27 @@ class _ProfileState extends State<Profile> {
                             ),
                           ),
                         ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
-                          elevation: 15,
-                          child: Container(
-                            height: 80,
-                            width: MediaQuery.of(context).size.width / 6,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: AssetImage('Assets/images/DSA.jpg')),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) {
+                              return campusProgram();
+                            }));
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12)),
+                            elevation: 15,
+                            child: Container(
+                              height: 80,
+                              width: MediaQuery.of(context).size.width / 6,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image:
+                                          AssetImage('Assets/images/DSA.jpg')),
+                                  borderRadius: BorderRadius.circular(12)),
+                            ),
                           ),
                         )
                       ],
@@ -337,28 +346,26 @@ class _ProfileState extends State<Profile> {
         left: 100,
         child: Padding(
           padding: const EdgeInsets.all(30.0),
-          child: RaisedButton(
-              elevation: 10,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
-              color: Colors.amber,
-              onPressed: () {
-                final provider =
-                    Provider.of<GoogleSignInProvider>(context, listen: false);
-                provider.logout();
-              },
-              child: Container(
-                width: 100,
-                height: 50,
-                child: Center(
-                    child: Text(
-                  'Logout',
-                  style: GoogleFonts.hind(
-                    fontSize: 20,
-                    color: Colors.black,
-                  ),
-                )),
+          child: InkWell(
+            onTap: () {
+              final provider =
+                  Provider.of<GoogleSignInProvider>(context, listen: false);
+              provider.logout();
+            },
+            child: Container(
+              width: 100,
+              height: 50,
+              child: Center(
+                  child: Text(
+                'Logout',
+                style: GoogleFonts.hind(fontSize: 20, color: Colors.white),
               )),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(color: Colors.indigo),
+                  gradient: general.buttonColor),
+            ),
+          ),
         ),
       )
     ])));

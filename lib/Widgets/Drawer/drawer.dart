@@ -176,7 +176,7 @@ class drawer extends StatelessWidget {
                       }));
                     },
                     leading: FaIcon(
-                      FontAwesomeIcons.male,
+                      FontAwesomeIcons.sign,
                       color: Colors.black,
                     ),
                     title: Text(
@@ -199,6 +199,24 @@ class drawer extends StatelessWidget {
                     ),
                     title: Text(
                       'Feedback',
+                      style: GoogleFonts.roboto(fontSize: 18),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ListTile(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) {
+                        return Profile();
+                      }));
+                    },
+                    leading: FaIcon(
+                      FontAwesomeIcons.male,
+                      color: Colors.black,
+                    ),
+                    title: Text(
+                      'Profile',
                       style: GoogleFonts.roboto(fontSize: 18),
                     ),
                   )

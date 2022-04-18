@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:placementcracker/Authentication/pfp.dart';
 import 'package:placementcracker/Widgets/Courses/mainUI.dart';
+import 'package:placementcracker/Widgets/Drawer/drawer.dart';
 import 'package:placementcracker/Widgets/splash.dart';
 import 'package:placementcracker/providers/Channels_Provider/core_subjects_provider.dart';
 import 'package:placementcracker/providers/Channels_Provider/freecourse_provider.dart';
@@ -44,9 +46,9 @@ class _myAppState extends State<myApp> {
         ChangeNotifierProvider(create: (context) => JobProvider()),
         ChangeNotifierProvider(create: (context) => ArticleProvider()),
         ChangeNotifierProvider(create: ((context) => ProgramProvider())),
-        ChangeNotifierProvider(create: (context)=>FreeCourseProvider()),
-        ChangeNotifierProvider(create: (context)=>RoadMapProvider()),
-        ChangeNotifierProvider(create: (context)=>CoreProvider()),
+        ChangeNotifierProvider(create: (context) => FreeCourseProvider()),
+        ChangeNotifierProvider(create: (context) => RoadMapProvider()),
+        ChangeNotifierProvider(create: (context) => CoreProvider()),
         ChangeNotifierProvider(create: ((context) => WebProvider())),
         ChangeNotifierProvider(create: ((context) => CyberProvider())),
         ChangeNotifierProvider(create: ((context) => MachineProvider())),
@@ -56,7 +58,7 @@ class _myAppState extends State<myApp> {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:splashScreen(),
+        home: splashScreen(),
       ),
     );
   }

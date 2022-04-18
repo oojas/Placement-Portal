@@ -144,7 +144,7 @@ class _CyberSecurityState extends State<CyberSecurity> {
                                                   BorderRadius.circular(15)),
                                           child: Container(
                                             width: width / 1.8,
-                                            height: 60,
+                                            height: height/5,
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(15),
@@ -161,8 +161,10 @@ class _CyberSecurityState extends State<CyberSecurity> {
                                               top: 8.0, left: 20),
                                           child: Container(
                                             width: width / 7,
+                                            height: 60,
                                             child: Image.memory(base64Decode(
-                                                cyber.thumbnail.toString())),
+                                                cyber.thumbnail.toString()),
+                                                fit: BoxFit.fill,),
                                           ),
                                         )
                                       ],
