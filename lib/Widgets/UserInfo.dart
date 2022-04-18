@@ -2,16 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:placementcracker/Authentication/pfp.dart';
 import 'package:placementcracker/Sqflite/handler.dart';
 import 'package:placementcracker/Sqflite/repo.dart';
-
-import 'package:placementcracker/Widgets/Drawer/drawer.dart';
 import 'package:placementcracker/Widgets/Feed/feed_screen.dart';
 import 'package:placementcracker/helper/general.dart';
 import 'package:placementcracker/modals/user.dart';
-import 'package:placementcracker/providers/userinfo_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:after_layout/after_layout.dart';
 import 'package:sqflite/sqflite.dart';
@@ -276,12 +271,7 @@ class _userInfoState extends State<userInfo>
                                   _rollNumber.text.isEmpty) {
                                 return;
                               } else {
-                                Provider.of<UserInformationProvider>(context,
-                                        listen: false)
-                                    .addDetails(
-                                        _collegeName.text,
-                                        _rollNumber.text,
-                                        int.parse(_collegeYear.text));
+                                insertDB();
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(builder: (context) {
                                   return FeedScreen();

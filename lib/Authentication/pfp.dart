@@ -7,10 +7,7 @@ import 'package:placementcracker/Sqflite/repo.dart';
 import 'package:placementcracker/Widgets/ambassadorProgram.dart';
 import 'package:placementcracker/Widgets/resumeUI.dart';
 import 'package:placementcracker/helper/general.dart';
-
 import 'package:placementcracker/providers/google_sign_in.dart';
-import 'package:placementcracker/providers/userinfo_provider.dart';
-
 import 'package:provider/provider.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:sqflite/sqflite.dart';
@@ -25,7 +22,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   // ignore: override_on_non_overriding_member, unnecessary_new
   General general = new General();
-  late List<Map<String, dynamic>> userInfo;
+  List<Map<String, dynamic>>? userInfo;
   Database? _database;
   PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
@@ -44,14 +41,19 @@ class _ProfileState extends State<Profile> {
     UserRepo userRepo = new UserRepo();
     userInfo = await userRepo.getUsers(_database);
     await _database?.close();
+    print('called');
   }
 
   @override
   void initState() {
-    getFromUser();
+    
 
     super.initState();
     _initPackageInfo();
+    setState(() {
+      getFromUser();
+    });
+    
   }
 
   Future<void> _initPackageInfo() async {
@@ -232,12 +234,10 @@ class _ProfileState extends State<Profile> {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Consumer<UserInformationProvider>(
-                          builder: (context, UserInformationProvider, _) {
-                        return ListView.builder(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListView.builder(
                             shrinkWrap: true,
-                            itemCount: UserInformationProvider.list.length,
+                            itemCount: userInfo!.length,
                             itemBuilder: (context, index) {
                               return Column(
                                 children: [
@@ -256,9 +256,7 @@ class _ProfileState extends State<Profile> {
                                       child: Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          UserInformationProvider
-                                              .list[index].collegeName
-                                              .toString(),
+                                          '${userInfo?[index]['name']}',
                                           style: GoogleFonts.roboto(
                                               fontSize: 18,
                                               color: Colors.black,
@@ -287,8 +285,7 @@ class _ProfileState extends State<Profile> {
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
-                                        UserInformationProvider
-                                            .list[index].rollNumber
+                                        '${userInfo?[index]['rollNumber']}'
                                             .toString(),
                                         style: GoogleFonts.roboto(
                                             fontSize: 18, color: Colors.black),
@@ -312,17 +309,13 @@ class _ProfileState extends State<Profile> {
                                     height: 5,
                                   ),
                                   Text(
-                                    UserInformationProvider
-                                        .list[index].collegeYear
-                                        .toString(),
+                                    '${userInfo?[index]['year']}',
                                     style: GoogleFonts.roboto(
                                         fontSize: 18, color: Colors.black),
                                   ),
                                 ],
                               );
-                            });
-                      }),
-                    ),
+                            })),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
