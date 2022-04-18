@@ -46,13 +46,11 @@ class _ProfileState extends State<Profile> {
 
   @override
   void initState() {
-    
-
-    super.initState();
-    _initPackageInfo();
     setState(() {
       getFromUser();
     });
+    super.initState();
+    _initPackageInfo();
     
   }
 
@@ -232,91 +230,7 @@ class _ProfileState extends State<Profile> {
                       ],
                     ),
                   ),
-                  Expanded(
-                    child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: userInfo!.length,
-                            itemBuilder: (context, index) {
-                              return Column(
-                                children: [
-                                  Text(
-                                    'College Name :',
-                                    style: GoogleFonts.roboto(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15.0),
-                                    child: SizedBox(
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          '${userInfo?[index]['name']}',
-                                          style: GoogleFonts.roboto(
-                                              fontSize: 18,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      'Roll Number :',
-                                      style: GoogleFonts.roboto(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15.0),
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        '${userInfo?[index]['rollNumber']}'
-                                            .toString(),
-                                        style: GoogleFonts.roboto(
-                                            fontSize: 18, color: Colors.black),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 7.0, left: 15, right: 15),
-                                    child: Text(
-                                      'College Year :',
-                                      style: GoogleFonts.roboto(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    '${userInfo?[index]['year']}',
-                                    style: GoogleFonts.roboto(
-                                        fontSize: 18, color: Colors.black),
-                                  ),
-                                ],
-                              );
-                            })),
-                  ),
+                  if (userInfo != null) buildInfo(),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: Text('Version Number :' + _packageInfo.version),
@@ -362,5 +276,89 @@ class _ProfileState extends State<Profile> {
         ),
       )
     ])));
+  }
+
+  Expanded buildInfo() {
+    return Expanded(
+      child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: userInfo!.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    Text(
+                      'College Name :',
+                      style: GoogleFonts.roboto(
+                          fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: SizedBox(
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            '${userInfo?[index]['name']}',
+                            style: GoogleFonts.roboto(
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Roll Number :',
+                        style: GoogleFonts.roboto(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          '${userInfo?[index]['rollNumber']}'.toString(),
+                          style: GoogleFonts.roboto(
+                              fontSize: 18, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 7.0, left: 15, right: 15),
+                      child: Text(
+                        'College Year :',
+                        style: GoogleFonts.roboto(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      '${userInfo?[index]['year']}',
+                      style:
+                          GoogleFonts.roboto(fontSize: 18, color: Colors.black),
+                    ),
+                  ],
+                );
+              })),
+    );
   }
 }

@@ -14,8 +14,15 @@ class FeedbackApp extends StatelessWidget {
     URL url = URL();
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    // ignore: prefer_const_constructors
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Feedback',
+          style: GoogleFonts.roboto(),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.indigo.shade300,
+      ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -112,7 +119,7 @@ class FeedbackApp extends StatelessWidget {
                       ),
                     ),
                   ),
-                  width: 160,
+                  width: width / 2,
                   height: 50,
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.black),

@@ -15,9 +15,8 @@ class About extends StatefulWidget {
 
 class _AboutState extends State<About> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _animationMainCard,
-      _animationFollowUp,
-      _animationFeedback;
+  late Animation<double> _animationMainCard, _animationFollowUp;
+
   @override
   void initState() {
     super.initState();
@@ -46,6 +45,14 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
         animation: _controller,
         builder: (BuildContext context, Widget? child) {
           return Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              title: Text(
+                'About',
+                style: GoogleFonts.roboto(),
+              ),
+              backgroundColor: Colors.indigo.shade300,
+            ),
             body: SafeArea(
                 child: Container(
               width: double.infinity,
@@ -69,54 +76,56 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
                                   topRight: Radius.circular(50))),
                           child: SizedBox(
                             width: width / 2,
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    "Let's connect:)",
-                                    style: GoogleFonts.hind(
-                                        fontSize: 18,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.left,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Let's connect:)",
+                                      style: GoogleFonts.hind(
+                                          fontSize: 18,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.left,
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    // ignore: prefer_const_literals_to_create_immutables
-                                    children: [
-                                      IconButton(
-                                          onPressed: () {
-                                            url.launchURLForInstagram();
-                                          },
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.instagram,
-                                            color: Colors.pink,
-                                          )),
-                                      IconButton(
-                                          onPressed: () {
-                                            url.launchURLForWebsite();
-                                          },
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.link,
-                                            color: Colors.blue.shade500,
-                                          )),
-                                      IconButton(
-                                          onPressed: () {
-                                            url.launchURLForLinkedin();
-                                          },
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.linkedin,
-                                            color: Colors.blue.shade900,
-                                          )),
-                                    ],
-                                  ),
-                                )
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      // ignore: prefer_const_literals_to_create_immutables
+                                      children: [
+                                        IconButton(
+                                            onPressed: () {
+                                              url.launchURLForInstagram();
+                                            },
+                                            icon: FaIcon(
+                                              FontAwesomeIcons.instagram,
+                                              color: Colors.pink,
+                                            )),
+                                        IconButton(
+                                            onPressed: () {
+                                              url.launchURLForWebsite();
+                                            },
+                                            icon: FaIcon(
+                                              FontAwesomeIcons.link,
+                                              color: Colors.blue.shade500,
+                                            )),
+                                        IconButton(
+                                            onPressed: () {
+                                              url.launchURLForLinkedin();
+                                            },
+                                            icon: FaIcon(
+                                              FontAwesomeIcons.linkedin,
+                                              color: Colors.blue.shade900,
+                                            )),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -149,7 +158,7 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
                             child: Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: Text(
-                                'I am a normal student like you, An average engineering student. My motivation for building up the app is to provide a platform for all the students to have a proper pool of tried and tested resources for building up a good resume and preparing for placements.',
+                                'I am a normal student like you, an average engineering student. My motivation for building up the app is to provide a platform for all the students to have a proper pool of tried and tested resources for building up a good resume and preparing for placements.',
                                 style: GoogleFonts.hind(
                                     fontSize: 19, color: Colors.black),
                                 textAlign: TextAlign.left,

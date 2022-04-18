@@ -161,7 +161,7 @@ class _FeedScreenState extends State<FeedScreen> {
                         padding: const EdgeInsets.all(25.0),
                         child: Text(
                           'Tech blogs and articles',
-                          style: GoogleFonts.roboto(fontSize: 25),
+                          style: GoogleFonts.roboto(fontSize: 18),
                         ),
                       )),
                   buildArticleList(height, width),

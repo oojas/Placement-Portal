@@ -31,6 +31,14 @@ class _resumeState extends State<resume> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Resume Tips',
+          style: GoogleFonts.roboto(),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.indigo.shade300,
+      ),
       body: SafeArea(
           child: Container(
         width: width,
@@ -43,44 +51,7 @@ class _resumeState extends State<resume> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Card(
-                      elevation: 3,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(50),
-                              topLeft: Radius.circular(50),
-                              topRight: Radius.circular(50))),
-                      child: SizedBox(
-                        width: width,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Text(
-                                "How to make an outstanding resume that stands out.",
-                                style: GoogleFonts.roboto(
-                                    fontSize: 24,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.left,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  )),
-              Image.asset(
-                'Assets/images/resume.png',
-                height: 200,
-              ),
-              SizedBox(
-                height: 30,
-              ),
+              
               Text(
                 '1. Only add useful links at the top.',
                 style: GoogleFonts.roboto(fontSize: 22),
@@ -387,7 +358,8 @@ class _resumeState extends State<resume> {
                   ),
                   InkWell(
                     onTap: () {
-                      launchURLForResume("https://www.overleaf.com/latex/templates/deedy-cv/bjryvfsjdyxz");
+                      launchURLForResume(
+                          "https://www.overleaf.com/latex/templates/deedy-cv/bjryvfsjdyxz");
                     },
                     child: Card(
                       shape: RoundedRectangleBorder(

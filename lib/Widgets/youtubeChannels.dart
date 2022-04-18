@@ -568,10 +568,9 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
                                         child: ReadMoreText(
                                           course.description.toString(),
                                           style: GoogleFonts.roboto(
-                                              wordSpacing: 2,
+                                              wordSpacing: 0,
                                               fontSize: 18,
                                               color: Colors.black),
-                                          trimMode: TrimMode.Line,
                                           trimLines: 4,
                                           trimCollapsedText: 'Read More',
                                           trimExpandedText: 'Show less',
