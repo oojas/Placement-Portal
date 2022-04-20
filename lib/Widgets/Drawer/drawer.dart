@@ -212,7 +212,8 @@ class drawer extends StatelessWidget {
                   ),
                   ListTile(
                     onTap: () {
-                      Provider.of<UserInformationProvider>(context)
+                      Provider.of<UserInformationProvider>(context,
+                              listen: false)
                           .getFromUser();
                       Navigator.push(context, MaterialPageRoute(builder: (_) {
                         return Profile();

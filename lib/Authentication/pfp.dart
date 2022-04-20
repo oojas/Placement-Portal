@@ -77,6 +77,7 @@ class _ProfileState extends State<Profile> {
         width: double.infinity,
         height: double.infinity,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
@@ -84,6 +85,16 @@ class _ProfileState extends State<Profile> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Icon(Icons.arrow_back)),
+                      )),
                   CircleAvatar(
                     radius: 50,
                     backgroundImage: NetworkImage(photo!),
@@ -140,7 +151,7 @@ class _ProfileState extends State<Profile> {
         ),
       ),
       Positioned(
-        bottom: 100,
+        bottom: 90,
         left: 50,
         child: Padding(
           padding: const EdgeInsets.all(15.0),
