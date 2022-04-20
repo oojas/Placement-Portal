@@ -8,6 +8,7 @@ import 'package:placementcracker/Widgets/ambassadorProgram.dart';
 import 'package:placementcracker/Widgets/resumeUI.dart';
 import 'package:placementcracker/helper/general.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
+import 'package:placementcracker/providers/userinfo_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:sqflite/sqflite.dart';
@@ -22,7 +23,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   // ignore: override_on_non_overriding_member, unnecessary_new
   General general = new General();
-  List<Map<String, dynamic>>? userInfo;
+
   Database? _database;
   PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
@@ -36,22 +37,18 @@ class _ProfileState extends State<Profile> {
     return _database;
   }
 
-  Future<void> getFromUser() async {
-    _database = await openDb();
-    UserRepo userRepo = new UserRepo();
-    userInfo = await userRepo.getUsers(_database);
-    await _database?.close();
-    print('called');
-  }
+  // Future<void> getFromUser() async {
+  //   _database = await openDb();
+  //   UserRepo userRepo = new UserRepo();
+  //   userInfo = await userRepo.getUsers(_database);
+  //   await _database?.close();
+  //   print('called');
+  // }
 
   @override
   void initState() {
-    setState(() {
-      getFromUser();
-    });
     super.initState();
     _initPackageInfo();
-    
   }
 
   Future<void> _initPackageInfo() async {
@@ -230,7 +227,7 @@ class _ProfileState extends State<Profile> {
                       ],
                     ),
                   ),
-                  if (userInfo != null) buildInfo(),
+                  buildInfo(),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: Text('Version Number :' + _packageInfo.version),
@@ -282,83 +279,87 @@ class _ProfileState extends State<Profile> {
     return Expanded(
       child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: userInfo!.length,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    Text(
-                      'College Name :',
-                      style: GoogleFonts.roboto(
-                          fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: SizedBox(
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            '${userInfo?[index]['name']}',
-                            style: GoogleFonts.roboto(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400),
+          child: Consumer<UserInformationProvider>(
+            builder: ((context, itemList, child) {
+              return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 1,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Text(
+                          'College Name :',
+                          style: GoogleFonts.roboto(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15.0),
+                          child: SizedBox(
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                '${itemList.userInfo?[index]['name']}',
+                                style: GoogleFonts.roboto(
+                                    fontSize: 18,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Roll Number :',
-                        style: GoogleFonts.roboto(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          '${userInfo?[index]['rollNumber']}'.toString(),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Roll Number :',
+                            style: GoogleFonts.roboto(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15.0),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              '${itemList.userInfo?[index]['rollNumber']}',
+                              style: GoogleFonts.roboto(
+                                  fontSize: 18, color: Colors.black),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 7.0, left: 15, right: 15),
+                          child: Text(
+                            'College Year :',
+                            style: GoogleFonts.roboto(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          '${itemList.userInfo?[index]['year']}',
                           style: GoogleFonts.roboto(
                               fontSize: 18, color: Colors.black),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 7.0, left: 15, right: 15),
-                      child: Text(
-                        'College Year :',
-                        style: GoogleFonts.roboto(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      '${userInfo?[index]['year']}',
-                      style:
-                          GoogleFonts.roboto(fontSize: 18, color: Colors.black),
-                    ),
-                  ],
-                );
-              })),
+                      ],
+                    );
+                  });
+            }),
+          )),
     );
   }
 }

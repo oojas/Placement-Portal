@@ -12,6 +12,8 @@ import 'package:placementcracker/Widgets/feedback.dart';
 import 'package:placementcracker/Widgets/resumeUI.dart';
 import 'package:placementcracker/Widgets/youtubeChannels.dart';
 import 'package:placementcracker/helper/general.dart';
+import 'package:placementcracker/providers/userinfo_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class drawer extends StatelessWidget {
@@ -43,6 +45,9 @@ class drawer extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {
+                          Provider.of<UserInformationProvider>(context,
+                                  listen: false)
+                              .getFromUser();
                           Navigator.of(context)
                               .push(MaterialPageRoute(builder: (context) {
                             return Profile();
@@ -202,7 +207,26 @@ class drawer extends StatelessWidget {
                       style: GoogleFonts.roboto(fontSize: 18),
                     ),
                   ),
-                 
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ListTile(
+                    onTap: () {
+                      Provider.of<UserInformationProvider>(context)
+                          .getFromUser();
+                      Navigator.push(context, MaterialPageRoute(builder: (_) {
+                        return Profile();
+                      }));
+                    },
+                    leading: FaIcon(
+                      FontAwesomeIcons.male,
+                      color: Colors.black,
+                    ),
+                    title: Text(
+                      'Profile',
+                      style: GoogleFonts.roboto(fontSize: 18),
+                    ),
+                  ),
                 ],
               ),
             )

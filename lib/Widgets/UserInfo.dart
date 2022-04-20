@@ -7,6 +7,8 @@ import 'package:placementcracker/Sqflite/repo.dart';
 import 'package:placementcracker/Widgets/Feed/feed_screen.dart';
 import 'package:placementcracker/helper/general.dart';
 import 'package:placementcracker/modals/user.dart';
+import 'package:placementcracker/providers/userinfo_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:after_layout/after_layout.dart';
 import 'package:sqflite/sqflite.dart';
@@ -28,6 +30,8 @@ class _userInfoState extends State<userInfo>
   TextEditingController _collegeName = TextEditingController();
   TextEditingController _rollNumber = TextEditingController();
   Database? _database;
+  UserInformationProvider _userInformationProvider =
+      new UserInformationProvider();
   late AnimationController _controller;
   late Animation _animation;
   FocusNode _focusNode = FocusNode();
@@ -78,19 +82,19 @@ class _userInfoState extends State<userInfo>
     return _database;
   }
 
-  Future<void> insertDB() async {
-    _database = await openDb();
-    UserRepo userRepo = new UserRepo();
-    userRepo.createTable(_database);
+  // Future<void> insertDB() async {
+  //   _database = await openDb();
+  //   UserRepo userRepo = new UserRepo();
+  //   userRepo.createTable(_database);
 
-    User user = new User(
-        _collegeName.text.toString(),
-        _rollNumber.text.toString(),
-        int.tryParse(_collegeYear.text.toString()));
+  //   User user = new User(
+  //       _collegeName.text.toString(),
+  //       _rollNumber.text.toString(),
+  //       int.tryParse(_collegeYear.text.toString()));
 
-    await _database?.insert('User', user.toMap());
-    await _database?.close();
-  }
+  //   await _database?.insert('User', user.toMap());
+  //   await _database?.close();
+  // }
 
   Future<void> getFromUser() async {
     _database = await openDb();
@@ -271,7 +275,11 @@ class _userInfoState extends State<userInfo>
                                   _rollNumber.text.isEmpty) {
                                 return;
                               } else {
-                                insertDB();
+                                Provider.of<UserInformationProvider>(context,listen: false)
+                                    .insertDB(
+                                        _collegeName.text.toString(),
+                                        _rollNumber.text.toString(),
+                                        _collegeYear.text.toString());
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(builder: (context) {
                                   return FeedScreen();
