@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementcracker/Sqflite/handler.dart';
-import 'package:placementcracker/Sqflite/repo.dart';
 import 'package:placementcracker/Widgets/ambassadorProgram.dart';
 import 'package:placementcracker/Widgets/resumeUI.dart';
 import 'package:placementcracker/helper/general.dart';
@@ -36,14 +35,6 @@ class _ProfileState extends State<Profile> {
     _database = await DatabaseHandler().openDB();
     return _database;
   }
-
-  // Future<void> getFromUser() async {
-  //   _database = await openDb();
-  //   UserRepo userRepo = new UserRepo();
-  //   userInfo = await userRepo.getUsers(_database);
-  //   await _database?.close();
-  //   print('called');
-  // }
 
   @override
   void initState() {

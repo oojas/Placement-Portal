@@ -6,7 +6,6 @@ import 'package:placementcracker/Sqflite/handler.dart';
 import 'package:placementcracker/Sqflite/repo.dart';
 import 'package:placementcracker/Widgets/Feed/feed_screen.dart';
 import 'package:placementcracker/helper/general.dart';
-import 'package:placementcracker/modals/user.dart';
 import 'package:placementcracker/providers/userinfo_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -275,7 +274,8 @@ class _userInfoState extends State<userInfo>
                                   _rollNumber.text.isEmpty) {
                                 return;
                               } else {
-                                Provider.of<UserInformationProvider>(context,listen: false)
+                                Provider.of<UserInformationProvider>(context,
+                                        listen: false)
                                     .insertDB(
                                         _collegeName.text.toString(),
                                         _rollNumber.text.toString(),
@@ -299,9 +299,4 @@ class _userInfoState extends State<userInfo>
       ),
     );
   }
-
-  // @override
-  // void afterFirstLayout(BuildContext context) {
-  //   // TODO: implement afterFirstLayout
-  // }
 }
