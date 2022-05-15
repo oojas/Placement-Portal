@@ -207,7 +207,7 @@ class _userInfoState extends State<userInfo>
                                                     borderSide: BorderSide(
                                                         color: Colors.black)),
                                                 focusColor: Colors.black,
-                                                labelText: 'College Year',
+                                                labelText: 'Academic Year',
                                                 labelStyle: GoogleFonts.roboto(
                                                     color: Colors.black),
                                                 contentPadding:
@@ -227,7 +227,7 @@ class _userInfoState extends State<userInfo>
                                                     borderSide: BorderSide(
                                                         color: Colors.black)),
                                                 focusColor: Colors.black,
-                                                labelText: 'Roll Number',
+                                                labelText: 'Register Number',
                                                 labelStyle: GoogleFonts.roboto(
                                                     color: Colors.black),
                                                 contentPadding:

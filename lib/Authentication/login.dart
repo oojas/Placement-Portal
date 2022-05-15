@@ -2,7 +2,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:placementcracker/Authentication/pfp.dart';
 import 'package:placementcracker/Widgets/UserInfo.dart';
 import 'package:placementcracker/helper/general.dart';
 import 'package:placementcracker/providers/google_sign_in.dart';
@@ -26,7 +25,6 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     // ignore: unnecessary_new
     _animation1 = new Tween(begin: 0.0, end: 1.0).animate(
         CurvedAnimation(parent: _controller, curve: Curves.easeInOutQuint));
-        
   }
 
   @override
@@ -131,7 +129,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                               child: Text(
                                                 "It's not as hard as you think!",
                                                 style: GoogleFonts.roboto(
-                                                    fontSize: 25,
+                                                    fontSize: 20,
                                                     color: Colors.black87,
                                                     fontWeight:
                                                         FontWeight.bold),
