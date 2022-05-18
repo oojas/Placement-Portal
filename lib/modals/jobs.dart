@@ -7,6 +7,7 @@ class Jobs {
   String? link;
 
   Jobs({this.name, this.role, this.image, this.link});
+  
 
   Jobs.fromJson(Map<String, dynamic> json) {
     name = json['name'];
