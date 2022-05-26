@@ -178,7 +178,7 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'RoadMaps',
+                      'Free Courses',
                       style:
                           GoogleFonts.roboto(fontSize: 22, color: Colors.black),
                     ),
@@ -187,7 +187,8 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
                 SizedBox(
                   height: 15,
                 ),
-                roadmapCard(height, width, general),
+                courseCard(height, width, general),
+                
                 SizedBox(
                   height: 15,
                 ),
@@ -196,7 +197,7 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Free Courses',
+                      'Roadmaps',
                       style:
                           GoogleFonts.roboto(fontSize: 20, color: Colors.black),
                     ),
@@ -205,7 +206,7 @@ class _YoutubeChannelsState extends State<YoutubeChannels> {
                 SizedBox(
                   height: 15,
                 ),
-                courseCard(height, width, general),
+                roadmapCard(height, width, general),
                 SizedBox(
                   height: 15,
                 ),

@@ -120,7 +120,6 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                             BorderRadius.circular(25)),
                                     elevation: 5,
                                     child: Container(
-                                      clipBehavior: Clip.hardEdge,
                                       child: Column(
                                         children: [
                                           Padding(
@@ -136,7 +135,9 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                               ),
                                             ),
                                           ),
-                                          Expanded(child: Container()),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
                                           Align(
                                             alignment: Alignment.bottomCenter,
                                             child: Padding(
@@ -192,6 +193,14 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                                 ),
                                               ),
                                             ),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            'or',
+                                            style: GoogleFonts.roboto(
+                                                fontSize: 18),
                                           )
                                         ],
                                       ),
@@ -200,12 +209,6 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                       height:
                                           MediaQuery.of(context).size.height /
                                               3,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              opacity: 0.6,
-                                              scale: 7,
-                                              image: AssetImage(
-                                                  'Assets/images/no-stress.png'))),
                                     ),
                                   ),
                                 ),

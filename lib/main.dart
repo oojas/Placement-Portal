@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, camel_case_types
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:placementcracker/Authentication/login.dart';
+import 'package:placementcracker/Widgets/Information.dart';
 import 'package:placementcracker/Widgets/splash.dart';
 import 'package:placementcracker/providers/Channels_Provider/core_subjects_provider.dart';
 import 'package:placementcracker/providers/Channels_Provider/freecourse_provider.dart';

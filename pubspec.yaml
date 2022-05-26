@@ -48,7 +48,7 @@ dependencies:
   after_layout: 
   sqflite:
   readmore:
-
+  image_picker:
 
 dev_dependencies:
   flutter_test:
